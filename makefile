@@ -2,11 +2,16 @@
 
 
 # Test
-test:
-	make -C test -f test.make test
+test: build
+	make -f test.make test
+
+
+# Misc
+build:
+	mkdir build
 
 
 # Clean
 clean:
-	-rm -f *~
-	-make -C test -f test.make clean
+	-rm -rf build
+	-find . -type f -name '*~' -delete
