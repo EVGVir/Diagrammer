@@ -10,13 +10,17 @@ CXXFLAGS += -g -O0
 LDLIBS    = -l:gtest_main.a -lpthread
 LDFLAGS   = -Lgoogle-test/googletest/make
 
+INC += ../src
+SRC += ../src/ascii-matrix.c++
+SRC += ascii-matrix-test.c++
+
 
 test: bin/test
 	bin/test
 
 
-bin/test: bin test.c++ $(LIB_GTEST)
-	$(CXX) $(CXXFLAGS) test.c++ -I../src -Igoogle-test/googletest/include $(LDFLAGS) $(LDLIBS) -o bin/test
+bin/test: bin $(LIB_GTEST) $(SRC) $(INC)/*.h++
+	$(CXX) $(CXXFLAGS) $(SRC) -I$(INC) -Igoogle-test/googletest/include $(LDFLAGS) $(LDLIBS) -o bin/test
 
 
 bin:
