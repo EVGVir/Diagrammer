@@ -62,3 +62,19 @@ TEST(AsciiMatrixTest, shouldAddEmptyString) {
   EXPECT_EQ(am.get(0, 2), 'b');
   EXPECT_EQ(am.get(1, 2), 0);
 }
+
+
+TEST(AsciiMatrixTest, shouldConstructWithPattern) {
+  unsigned char pattern[] = {
+     0, 'a',
+    'b', 0
+  };
+
+  AsciiMatrix am(2, 2, pattern);
+
+  EXPECT_EQ(am.get(0, 0), 0);
+  EXPECT_EQ(am.get(1, 0), 'a');
+
+  EXPECT_EQ(am.get(0, 1), 'b');
+  EXPECT_EQ(am.get(1, 1), 0);
+}

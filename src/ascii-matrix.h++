@@ -3,9 +3,21 @@
 #include <string>
 #include <vector>
 
-/// A storage for an ascii-picture to be converted into an image.
+/// A storage for an ascii-picture to be converted into an image or
+/// a pattern.
 class AsciiMatrix {
 public:
+  /// Creates an empty storage.
+  AsciiMatrix();
+
+  /// Initializes the storage with the provided pattern.
+  ///
+  /// @param dim_x Pattern dimension by the X-axis.
+  /// @param dim_y Pattern dimension by the Y-axis.
+  /// @param pattern Initialization pattern (a 2D array written as
+  ///   a 1D array row by row).
+  AsciiMatrix(size_t dim_x, size_t dim_y, const unsigned char pattern[]);
+
   /// Appends a string into the storage.
   ///
   /// @param input String to be added into the storage.
