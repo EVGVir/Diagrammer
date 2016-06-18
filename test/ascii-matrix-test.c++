@@ -78,3 +78,44 @@ TEST(AsciiMatrixTest, shouldConstructWithPattern) {
   EXPECT_EQ(am.get(0, 1), 'b');
   EXPECT_EQ(am.get(1, 1), 0);
 }
+
+
+TEST(AsciiMatrixTest, shouldGetWidth) {
+  AsciiMatrix empty;
+  EXPECT_EQ(empty.width(), 0u);
+
+  unsigned char pattern[] = {
+    0, 'a', 0
+  };
+
+  AsciiMatrix am(3, 1, pattern);
+  EXPECT_EQ(am.width(), 3u);
+
+  am << "12";
+  EXPECT_EQ(am.width(), 3u);
+
+  am << "123";
+  EXPECT_EQ(am.width(), 3u);
+
+  am << "1234";
+  EXPECT_EQ(am.width(), 4u);
+
+  am << "1";
+  EXPECT_EQ(am.width(), 4u);
+}
+
+
+TEST(AsciiMatrixTest, shouldGetHeight) {
+  AsciiMatrix empty;
+  EXPECT_EQ(empty.height(), 0u);
+
+  unsigned char pattern[] = {
+    0, 'a', 0
+  };
+
+  AsciiMatrix am(3, 1, pattern);
+  EXPECT_EQ(am.height(), 1u);
+
+  am << "a";
+  EXPECT_EQ(am.height(), 2u);
+}

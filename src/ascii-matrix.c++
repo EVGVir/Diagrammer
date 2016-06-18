@@ -1,16 +1,18 @@
 #include "ascii-matrix.h++"
 #include <cassert>
+#include <algorithm>
 
-using namespace std;
+using std::max;
+using std::string;
 
 
 AsciiMatrix::AsciiMatrix():
-  mMatrix()
+  mMatrix(), mWidth(0)
 {}
 
 
 AsciiMatrix::AsciiMatrix(size_t dim_x, size_t dim_y, const unsigned char pattern[]):
-  mMatrix()
+  mMatrix(), mWidth(dim_x)
 {
   for (size_t y = 0; y < dim_y; ++y) {
     TRow row;
@@ -25,6 +27,7 @@ AsciiMatrix::AsciiMatrix(size_t dim_x, size_t dim_y, const unsigned char pattern
 AsciiMatrix & AsciiMatrix::operator << (const string &input) {
   TRow row(input.begin(), input.end());
   mMatrix.push_back(row);
+  mWidth = max(mWidth, row.size());
   return *this;
 }
 
@@ -34,4 +37,14 @@ unsigned char AsciiMatrix::get(size_t x, size_t y) const {
   if (mMatrix.at(y).size() <= x) return 0;
 
   return mMatrix.at(y).at(x);
+}
+
+
+size_t AsciiMatrix::width() const {
+  return mWidth;
+}
+
+
+size_t AsciiMatrix::height() const {
+  return mMatrix.size();
 }

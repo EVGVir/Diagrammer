@@ -34,9 +34,16 @@ public:
   ///   ascii-picture dimension.
   unsigned char get(size_t x, size_t y) const;
 
+  /// @return Width of the picture/pattern stored in this container.
+  size_t width() const;
+
+  /// @return Height of the picture/pattern stored in this container.
+  size_t height() const;
+
 private:
   typedef std::vector<unsigned char> TRow; ///< Storage for a line of text.
-  typedef std::vector<TRow> TMatrix;       ///< Storage for the whole picture.
+  typedef std::vector<TRow> TMatrix;       ///< Storage for the whole picture/pattern.
 
-  TMatrix mMatrix;                         ///< Storage for the whole picture.
+  TMatrix mMatrix;                         ///< Storage for the whole picture/pattern.
+  size_t  mWidth;                          ///< Picture/pattern width.
 };
