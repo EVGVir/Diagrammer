@@ -5,6 +5,12 @@
 using namespace testing;
 
 
+const unsigned char patternT[] = {
+  '-', '+', '-',
+   0 , '|',  0
+};
+
+
 TEST(AsciiMatrixTest, shouldReturn0_ifEmpty) {
   AsciiMatrix am;
 
@@ -118,4 +124,105 @@ TEST(AsciiMatrixTest, shouldGetHeight) {
 
   am << "a";
   EXPECT_EQ(am.height(), 2u);
+}
+
+
+TEST(AsciiMatrixTest, shouldFindSimplePattern) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "     ";
+  am << " -+- ";
+  am << "  |  ";
+  am << "     ";
+
+  std::vector<TPoint> points = am.findPattern(p);
+  ASSERT_EQ(points.size(), 1u);
+  EXPECT_EQ(points[0].x, 1u);
+  EXPECT_EQ(points[0].y, 1u);
+}
+
+
+TEST(AsciiMatrixTest, shouldNotFindPattern) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "     ";
+  am << " --- ";
+  am << "  |  ";
+  am << "     ";
+
+  std::vector<TPoint> points = am.findPattern(p);
+  EXPECT_EQ(points.size(), 0u);
+}
+
+
+TEST(AsciiMatrixTest, shouldFindSeveralPatterns) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "-+-   ";
+  am << " | -+-";
+  am << "    | ";
+
+  std::vector<TPoint> points = am.findPattern(p);
+  ASSERT_EQ(points.size(), 2u);
+  EXPECT_EQ(points[0].x, 0u);
+  EXPECT_EQ(points[0].y, 0u);
+  EXPECT_EQ(points[1].x, 3u);
+  EXPECT_EQ(points[1].y, 1u);
+}
+
+
+TEST(AsciiMatrixTest, shouldFindPatternsOverlappedByCharacter) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "-+-+-";
+  am << " | | ";
+
+  std::vector<TPoint> points = am.findPattern(p);
+  ASSERT_EQ(points.size(), 2u);
+  EXPECT_EQ(points[0].x, 0u);
+  EXPECT_EQ(points[0].y, 0u);
+  EXPECT_EQ(points[1].x, 2u);
+  EXPECT_EQ(points[1].y, 0u);
+}
+
+
+TEST(AsciiMatrixTest, shouldFindPatternsOverlappedByEmptySpace) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "-+-  ";
+  am << " |-+-";
+  am << "   | ";
+
+  std::vector<TPoint> points = am.findPattern(p);
+  ASSERT_EQ(points.size(), 2u);
+  EXPECT_EQ(points[0].x, 0u);
+  EXPECT_EQ(points[0].y, 0u);
+  EXPECT_EQ(points[1].x, 2u);
+  EXPECT_EQ(points[1].y, 1u);
+}
+
+
+TEST(AsciiMatrixTest, shouldNotFindPatternInNarrowPicture) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "-+";
+  am << " |";
+
+  ASSERT_EQ(am.findPattern(p).size(), 0u);
+}
+
+
+TEST(AsciiMatrixTest, shouldNotFindPatternInShortPicture) {
+  AsciiMatrix p(3, 2, patternT);
+  AsciiMatrix am;
+
+  am << "-+-";
+
+  ASSERT_EQ(am.findPattern(p).size(), 0u);
 }
