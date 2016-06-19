@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 #include "ascii-matrix.h++"
 
 
@@ -14,10 +15,10 @@ const unsigned char patternT[] = {
 TEST(AsciiMatrixTest, shouldReturn0_ifEmpty) {
   AsciiMatrix am;
 
-  EXPECT_EQ(am.get(0, 0), 0);
-  EXPECT_EQ(am.get(0, 1), 0);
-  EXPECT_EQ(am.get(1, 0), 0);
-  EXPECT_EQ(am.get(1, 1), 0);
+  EXPECT_THAT(am.get(0, 0), 0);
+  EXPECT_THAT(am.get(0, 1), 0);
+  EXPECT_THAT(am.get(1, 0), 0);
+  EXPECT_THAT(am.get(1, 1), 0);
 }
 
 
@@ -26,10 +27,10 @@ TEST(AsciiMatrixTest, shouldAddString) {
 
   am << "abc";
 
-  EXPECT_EQ(am.get(0, 0), 'a');
-  EXPECT_EQ(am.get(1, 0), 'b');
-  EXPECT_EQ(am.get(2, 0), 'c');
-  EXPECT_EQ(am.get(3, 0), 0);
+  EXPECT_THAT(am.get(0, 0), 'a');
+  EXPECT_THAT(am.get(1, 0), 'b');
+  EXPECT_THAT(am.get(2, 0), 'c');
+  EXPECT_THAT(am.get(3, 0),  0 );
 }
 
 
@@ -38,20 +39,20 @@ TEST(AsciiMatrixTest, shouldAddSeveralStrings) {
 
   am << "ab" << "c" << "dev";
 
-  EXPECT_EQ(am.get(0, 0), 'a');
-  EXPECT_EQ(am.get(1, 0), 'b');
-  EXPECT_EQ(am.get(2, 0), 0);
+  EXPECT_THAT(am.get(0, 0), 'a');
+  EXPECT_THAT(am.get(1, 0), 'b');
+  EXPECT_THAT(am.get(2, 0),  0 );
 
-  EXPECT_EQ(am.get(0, 1), 'c');
-  EXPECT_EQ(am.get(1, 1), 0);
+  EXPECT_THAT(am.get(0, 1), 'c');
+  EXPECT_THAT(am.get(1, 1),  0 );
 
-  EXPECT_EQ(am.get(0, 2), 'd');
-  EXPECT_EQ(am.get(1, 2), 'e');
-  EXPECT_EQ(am.get(2, 2), 'v');
-  EXPECT_EQ(am.get(3, 2), 0);
+  EXPECT_THAT(am.get(0, 2), 'd');
+  EXPECT_THAT(am.get(1, 2), 'e');
+  EXPECT_THAT(am.get(2, 2), 'v');
+  EXPECT_THAT(am.get(3, 2),  0 );
 
-  EXPECT_EQ(am.get(4, 0), 0);
-  EXPECT_EQ(am.get(4, 4), 0);
+  EXPECT_THAT(am.get(4, 0),  0 );
+  EXPECT_THAT(am.get(4, 4),  0 );
 }
 
 
@@ -60,13 +61,13 @@ TEST(AsciiMatrixTest, shouldAddEmptyString) {
 
   am << "a" << "" << "b";
 
-  EXPECT_EQ(am.get(0, 0), 'a');
-  EXPECT_EQ(am.get(1, 0), 0);
+  EXPECT_THAT(am.get(0, 0), 'a');
+  EXPECT_THAT(am.get(1, 0),  0 );
 
-  EXPECT_EQ(am.get(0, 1), 0);
+  EXPECT_THAT(am.get(0, 1),  0 );
 
-  EXPECT_EQ(am.get(0, 2), 'b');
-  EXPECT_EQ(am.get(1, 2), 0);
+  EXPECT_THAT(am.get(0, 2), 'b');
+  EXPECT_THAT(am.get(1, 2),  0 );
 }
 
 
@@ -78,52 +79,52 @@ TEST(AsciiMatrixTest, shouldConstructWithPattern) {
 
   AsciiMatrix am(2, 2, pattern);
 
-  EXPECT_EQ(am.get(0, 0), 0);
-  EXPECT_EQ(am.get(1, 0), 'a');
+  EXPECT_THAT(am.get(0, 0),  0 );
+  EXPECT_THAT(am.get(1, 0), 'a');
 
-  EXPECT_EQ(am.get(0, 1), 'b');
-  EXPECT_EQ(am.get(1, 1), 0);
+  EXPECT_THAT(am.get(0, 1), 'b');
+  EXPECT_THAT(am.get(1, 1),  0 );
 }
 
 
 TEST(AsciiMatrixTest, shouldGetWidth) {
   AsciiMatrix empty;
-  EXPECT_EQ(empty.width(), 0u);
+  EXPECT_THAT(empty.width(), 0);
 
   unsigned char pattern[] = {
     0, 'a', 0
   };
 
   AsciiMatrix am(3, 1, pattern);
-  EXPECT_EQ(am.width(), 3u);
+  EXPECT_THAT(am.width(), 3);
 
   am << "12";
-  EXPECT_EQ(am.width(), 3u);
+  EXPECT_THAT(am.width(), 3);
 
   am << "123";
-  EXPECT_EQ(am.width(), 3u);
+  EXPECT_THAT(am.width(), 3);
 
   am << "1234";
-  EXPECT_EQ(am.width(), 4u);
+  EXPECT_THAT(am.width(), 4);
 
   am << "1";
-  EXPECT_EQ(am.width(), 4u);
+  EXPECT_THAT(am.width(), 4);
 }
 
 
 TEST(AsciiMatrixTest, shouldGetHeight) {
   AsciiMatrix empty;
-  EXPECT_EQ(empty.height(), 0u);
+  EXPECT_THAT(empty.height(), 0);
 
   unsigned char pattern[] = {
     0, 'a', 0
   };
 
   AsciiMatrix am(3, 1, pattern);
-  EXPECT_EQ(am.height(), 1u);
+  EXPECT_THAT(am.height(), 1);
 
   am << "a";
-  EXPECT_EQ(am.height(), 2u);
+  EXPECT_THAT(am.height(), 2);
 }
 
 
@@ -137,9 +138,9 @@ TEST(AsciiMatrixTest, shouldFindSimplePattern) {
   am << "     ";
 
   std::vector<TPoint> points = am.findPattern(p);
-  ASSERT_EQ(points.size(), 1u);
-  EXPECT_EQ(points[0].x, 1u);
-  EXPECT_EQ(points[0].y, 1u);
+  ASSERT_THAT(points.size(), 1);
+  EXPECT_THAT(points[0].x, 1);
+  EXPECT_THAT(points[0].y, 1);
 }
 
 
@@ -153,7 +154,7 @@ TEST(AsciiMatrixTest, shouldNotFindPattern) {
   am << "     ";
 
   std::vector<TPoint> points = am.findPattern(p);
-  EXPECT_EQ(points.size(), 0u);
+  EXPECT_THAT(points.size(), 0);
 }
 
 
@@ -166,11 +167,11 @@ TEST(AsciiMatrixTest, shouldFindSeveralPatterns) {
   am << "    | ";
 
   std::vector<TPoint> points = am.findPattern(p);
-  ASSERT_EQ(points.size(), 2u);
-  EXPECT_EQ(points[0].x, 0u);
-  EXPECT_EQ(points[0].y, 0u);
-  EXPECT_EQ(points[1].x, 3u);
-  EXPECT_EQ(points[1].y, 1u);
+  ASSERT_THAT(points.size(), 2);
+  EXPECT_THAT(points[0].x, 0);
+  EXPECT_THAT(points[0].y, 0);
+  EXPECT_THAT(points[1].x, 3);
+  EXPECT_THAT(points[1].y, 1);
 }
 
 
@@ -182,11 +183,11 @@ TEST(AsciiMatrixTest, shouldFindPatternsOverlappedByCharacter) {
   am << " | | ";
 
   std::vector<TPoint> points = am.findPattern(p);
-  ASSERT_EQ(points.size(), 2u);
-  EXPECT_EQ(points[0].x, 0u);
-  EXPECT_EQ(points[0].y, 0u);
-  EXPECT_EQ(points[1].x, 2u);
-  EXPECT_EQ(points[1].y, 0u);
+  ASSERT_THAT(points.size(), 2);
+  EXPECT_THAT(points[0].x, 0);
+  EXPECT_THAT(points[0].y, 0);
+  EXPECT_THAT(points[1].x, 2);
+  EXPECT_THAT(points[1].y, 0);
 }
 
 
@@ -199,11 +200,11 @@ TEST(AsciiMatrixTest, shouldFindPatternsOverlappedByEmptySpace) {
   am << "   | ";
 
   std::vector<TPoint> points = am.findPattern(p);
-  ASSERT_EQ(points.size(), 2u);
-  EXPECT_EQ(points[0].x, 0u);
-  EXPECT_EQ(points[0].y, 0u);
-  EXPECT_EQ(points[1].x, 2u);
-  EXPECT_EQ(points[1].y, 1u);
+  ASSERT_THAT(points.size(), 2);
+  EXPECT_THAT(points[0].x, 0);
+  EXPECT_THAT(points[0].y, 0);
+  EXPECT_THAT(points[1].x, 2);
+  EXPECT_THAT(points[1].y, 1);
 }
 
 
@@ -214,7 +215,7 @@ TEST(AsciiMatrixTest, shouldNotFindPatternInNarrowPicture) {
   am << "-+";
   am << " |";
 
-  ASSERT_EQ(am.findPattern(p).size(), 0u);
+  ASSERT_THAT(am.findPattern(p).size(), 0);
 }
 
 
@@ -224,5 +225,5 @@ TEST(AsciiMatrixTest, shouldNotFindPatternInShortPicture) {
 
   am << "-+-";
 
-  ASSERT_EQ(am.findPattern(p).size(), 0u);
+  ASSERT_THAT(am.findPattern(p).size(), 0);
 }
