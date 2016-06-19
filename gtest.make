@@ -1,14 +1,16 @@
 .PHONY: gtest
 
-LIB_GTEST = build/google-test/googletest/make/gtest_main.a
+GTEST_BASE_DIR = build/google-test
+GMOCK_DIR = $(GTEST_BASE_DIR)/googlemock
+LIB_GMOCK = $(GMOCK_DIR)/make/gmock_main.a
 
 
-gtest: $(LIB_GTEST)
+gtest: $(LIB_GMOCK)
 
 
-google-test:
-	git clone https://github.com/google/googletest.git --branch master build/google-test
+$(GTEST_BASE_DIR):
+	git clone https://github.com/google/googletest.git --branch master $(GTEST_BASE_DIR)
 
 
-$(LIB_GTEST): google-test
-	make -C build/google-test/googletest/make gtest_main.a
+$(LIB_GMOCK): $(GTEST_BASE_DIR)
+	make -C $(GMOCK_DIR)/make gmock_main.a
