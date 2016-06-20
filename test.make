@@ -16,6 +16,7 @@ INC += -I$(GMOCK_DIR)/include
 
 SRC += src/ascii-matrix.c++
 SRC += test/ascii-matrix-test.c++
+SRC += test/matrix-test.c++
 
 LDLIBS    = -l:gmock_main.a -lpthread
 LDFLAGS   = -Lbuild/google-test/googlemock/make
