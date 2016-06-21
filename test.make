@@ -15,7 +15,10 @@ INC += -I$(GTEST_DIR)/include
 INC += -I$(GMOCK_DIR)/include
 
 SRC += src/ascii-matrix.c++
+SRC += src/diagram.c++
+
 SRC += test/ascii-matrix-test.c++
+SRC += test/diagram-test.c++
 SRC += test/matrix-test.c++
 
 LDLIBS    = -l:gmock_main.a -lpthread

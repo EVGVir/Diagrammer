@@ -6,9 +6,10 @@
 /// 2D array.
 template <class T>
 class Matrix {
+public:
   typedef std::vector<T> Column;    ///< A column of a 2D array.
   typedef std::vector<Column> Data; ///< A 2D array.
-public:
+
   /// Creates a 2D array.
   /// @param width Horizontal size of the created 2D array.
   /// @param height Vertical size of the created 2D array.
