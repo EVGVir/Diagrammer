@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <vector>
 
 
@@ -11,13 +12,50 @@ public:
   typedef std::vector<Column> Data; ///< A 2D array.
 
   /// Creates a 2D array.
+  ///
   /// @param width Horizontal size of the created 2D array.
+  ///
   /// @param height Vertical size of the created 2D array.
   Matrix(std::size_t width, std::size_t height):
     mWidth{width},
     mHeight{height},
     mData(width, Column(height))
   { }
+
+
+  /// Creates a 2D array.
+  ///
+  /// @param data Initialization data row-by-row.
+  ///
+  /// @warning Althoug the internal data representation is
+  /// column-by-column, in sake of convenience data parameter is
+  /// row-by-row:
+  ///        0   1   2        X
+  ///   +----+---+---+--------->
+  ///   | Matrix<int> matrix{{
+  /// 0 +   {00, 10, 20},
+  ///   |
+  /// 1 +   {01, 11, 21}
+  ///   | }}
+  ///   |
+  ///   v Y
+  Matrix(const Data &data):
+    mWidth{0},
+    mHeight{data.size()}
+  {
+    for (auto &row: data) {
+      mWidth = std::max(mWidth, row.size());
+    }
+
+    mData = Data(mWidth, Column(mHeight));
+
+    for (size_t x = 0; x < mWidth; ++x) {
+      for (size_t y = 0; y < mHeight; ++y) {
+        // Transpose the matrix, as it is written a row by row.
+        mData[x][y] = data[y][x];
+      }
+    }
+  }
 
   /// @return Horizontal size of this 2D array.
   std::size_t width() const {

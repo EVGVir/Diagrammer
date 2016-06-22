@@ -63,3 +63,21 @@ TEST_F(MatrixTest, shouldCopyMatrix) {
     }
   }
 }
+
+
+TEST(MatrixTest_, shouldCreateWithInitializerList) {
+  Matrix<int> m{{
+      { 0,  2,  4},
+      {-1, -3, -5}
+  }};
+
+  ASSERT_THAT(m.width(),  3);
+  ASSERT_THAT(m.height(), 2);
+
+  EXPECT_THAT(m[0][0],  0);
+  EXPECT_THAT(m[1][0],  2);
+  EXPECT_THAT(m[2][0],  4);
+  EXPECT_THAT(m[0][1], -1);
+  EXPECT_THAT(m[1][1], -3);
+  EXPECT_THAT(m[2][1], -5);
+}
