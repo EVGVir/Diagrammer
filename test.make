@@ -29,7 +29,7 @@ test: build/test
 	build/test
 
 
-build/test: $(LIB_GMOCK) src/* test/*
+build/test: $(LIB_GMOCK) src/* test/* test.make
 	$(CXX) $(CXXFLAGS) $(SRC) $(INC) $(LDFLAGS) $(LDLIBS) -o build/test
 
 
