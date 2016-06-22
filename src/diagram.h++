@@ -5,6 +5,16 @@
 #include <utility>
 
 
+/// A diagram element class.
+///
+/// An element can belong to several classes.
+enum class ElementClass {
+  None,                         ///< No class, just a character.
+  HorizontalLine,               ///< A horizontal line.
+  VerticalLine                  ///< A vertical line.
+};
+
+
 /// An ASCII-diagram.
 class Diagram {
 public:
