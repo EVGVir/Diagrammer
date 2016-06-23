@@ -11,9 +11,11 @@
 /// An element can belong to several classes.
 /// @see ElementClasses
 enum class ElementClass {
-  None,                         ///< No class, just a character.
-  HorizontalLine,               ///< A horizontal line.
-  VerticalLine                  ///< A vertical line.
+  None,                      ///< No class, just a character.
+  LineN,                     ///< A line from the center to the North.
+  LineW,                     ///< A line from the center to the West.
+  LineS,                     ///< A line from the center to the South.
+  LineE                      ///< A line from the center to the East.
 };
 
 
