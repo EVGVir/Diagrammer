@@ -28,6 +28,15 @@ struct DiagramElement {
 };
 
 
+/// Pattern.
+///
+/// Patterns are laid down on a diagram. Then it is checked that
+/// pattern's characters are equal to corresponding characters in the
+/// diagram. If all characters (but 0) are equal then classes from the
+/// pattern are applied to diagram's elements.
+typedef Matrix<DiagramElement> Pattern;
+
+
 /// An ASCII-diagram.
 class Diagram {
 public:
