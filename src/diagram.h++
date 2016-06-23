@@ -2,16 +2,29 @@
 
 #include "matrix.h++"
 #include <iosfwd>
+#include <set>
 #include <utility>
 
 
 /// A diagram element class.
 ///
 /// An element can belong to several classes.
+/// @see ElementClasses
 enum class ElementClass {
   None,                         ///< No class, just a character.
   HorizontalLine,               ///< A horizontal line.
   VerticalLine                  ///< A vertical line.
+};
+
+
+/// A set of element classes.
+typedef std::set<ElementClass> ElementClasses;
+
+
+/// A digram element: a character and classes assigned to it.
+struct DiagramElement {
+  char           c;            ///< A character.
+  ElementClasses classes;      ///< Classes assigned to the character.
 };
 
 

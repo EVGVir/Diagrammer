@@ -20,6 +20,7 @@ SRC += src/diagram.c++
 SRC += test/ascii-matrix-test.c++
 SRC += test/diagram-test.c++
 SRC += test/matrix-test.c++
+SRC += test/test-utils.c++
 
 LDLIBS    = -l:gmock_main.a -lpthread
 LDFLAGS   = -Lbuild/google-test/googlemock/make
