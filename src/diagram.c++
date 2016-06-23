@@ -20,13 +20,16 @@ Diagram::Diagram(istream &input):
   for (size_t y{0}; y < height(); ++y) {
     getline(input, line);
     for (size_t x{0}; x < line.size(); ++x) {
-      mMatrix[x][y] = line[x];
+      mMatrix[x][y] = DiagramElement {
+        line[x],
+        ElementClasses{ElementClass::None}
+      };
     }
   }
 }
 
 
-const Matrix<unsigned char>::Column & Diagram::operator [] (size_t x) {
+const Matrix<DiagramElement>::Column & Diagram::operator [] (size_t x) {
   return mMatrix[x];
 }
 

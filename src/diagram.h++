@@ -45,7 +45,7 @@ public:
   /// to a diagram element can be written as diagram[x][y].
   ///
   /// @param x Index of the column to be returned.
-  const Matrix<unsigned char>::Column & operator [] (size_t x);
+  const Matrix<DiagramElement>::Column & operator [] (size_t x);
 
   /// @return Horizontal size of this diagram.
   size_t width() const;
@@ -54,7 +54,7 @@ public:
   size_t height() const;
 
 private:
-  Matrix<unsigned char> mMatrix; ///< This diagram's internal data.
+  Matrix<DiagramElement> mMatrix; ///< This diagram's internal data.
 
   /// @return Dimensions (width, height) of a digram which is kept in
   /// the stream.
