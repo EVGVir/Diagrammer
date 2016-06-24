@@ -76,6 +76,11 @@ public:
     return mData[x];
   }
 
+  /// Const version of operator [].
+  const Column & operator [] (std::size_t x) const {
+    return mData[x];
+  }
+
 private:
   std::size_t mWidth;         ///< Number of columns in this 2D array.
   std::size_t mHeight;        ///< Number of rows in this 2D array.
