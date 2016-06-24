@@ -82,3 +82,16 @@ bool Diagram::checkPattern(size_t pos_x, size_t pos_y, const Pattern &pattern) c
 
   return true;
 }
+
+
+void Diagram::applyPatternAtPos(size_t pos_x, size_t pos_y, const Pattern &pattern) {
+  assert(pos_x + pattern.width()  <= width());
+  assert(pos_y + pattern.height() <= height());
+
+  for (size_t x = 0; x < pattern.width(); ++x) {
+    for (size_t y = 0; y < pattern.height(); ++y) {
+      const auto classes = pattern[x][y].classes;
+      mMatrix[pos_x + x][pos_y + y].classes.insert(classes.cbegin(), classes.cend());
+    }
+  }
+}

@@ -75,6 +75,16 @@ public:
   /// @retval false Diagram isn't matched to the pattern.
   bool checkPattern(size_t pos_x, size_t pos_y, const Pattern &pattern) const;
 
+  /// Applies a patter to the diagram at a certain position.
+  ///
+  /// A pattern is applied if corresponding diagram elements include
+  /// classes from this pattern.
+  ///
+  /// @param pos_x Position to apply the patter by X-axis.
+  /// @param pos_y Position to apply the patter by Y-axis.
+  /// @param pattern Pattern to be applied.
+  void applyPatternAtPos(size_t pos_x, size_t pos_y, const Pattern &pattern);
+
 private:
   Matrix<DiagramElement> mMatrix; ///< This diagram's internal data.
 
