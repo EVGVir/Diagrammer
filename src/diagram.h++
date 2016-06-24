@@ -85,6 +85,11 @@ public:
   /// @param pattern Pattern to be applied.
   void applyPatternAtPos(size_t pos_x, size_t pos_y, const Pattern &pattern);
 
+  /// Applies a pattern to the whole diagram.
+  ///
+  /// @param pattern Pattern to be applied.
+  void applyPattern(const Pattern &pattern);
+
 private:
   Matrix<DiagramElement> mMatrix; ///< This diagram's internal data.
 

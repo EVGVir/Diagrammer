@@ -95,3 +95,20 @@ void Diagram::applyPatternAtPos(size_t pos_x, size_t pos_y, const Pattern &patte
     }
   }
 }
+
+
+void Diagram::applyPattern(const Pattern &pattern) {
+  if (pattern.width() > width() ||
+      pattern.height() > height())
+  {
+    return;
+  }
+
+  for (size_t x = 0; x <= width() - pattern.width(); ++x) {
+    for (size_t y = 0; y <= height() - pattern.height(); ++y) {
+      if (checkPattern(x, y, pattern)) {
+        applyPatternAtPos(x, y, pattern);
+      }
+    }
+  }
+}

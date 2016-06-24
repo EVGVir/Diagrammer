@@ -87,3 +87,35 @@ TEST_F(DiagramTest, shouldApplyPatternAtPos) {
   EXPECT_THAT(d[2][1].classes, ElementsAre(EC::None));
   EXPECT_THAT(d[2][2].classes, ElementsAre(EC::None));
 }
+
+
+TEST_F(DiagramTest, shouldApplyPattern) {
+  ss.str("+--+\n"
+         "--  \n");
+  Diagram d{ss};
+
+  d.applyPattern(Patterns::Lines::Horizontal);
+  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::None));
+  EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
+  EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
+  EXPECT_THAT(d[3][0].classes, UnorderedElementsAre(EC::None));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
+  EXPECT_THAT(d[1][1].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
+  EXPECT_THAT(d[2][1].classes, UnorderedElementsAre(EC::None));
+  EXPECT_THAT(d[3][1].classes, UnorderedElementsAre(EC::None));
+}
+
+
+TEST_F(DiagramTest, shouldNotApplyPattern) {
+  ss.str("+-+\n"
+         "| |\n"
+         "+- \n");
+  Diagram d{ss};
+
+  d.applyPattern(Patterns::Corners::NW);
+  for (size_t x = 0; x < d.width(); ++x) {
+    for (size_t y = 0; y < d.height(); ++y) {
+      EXPECT_THAT(d[x][y].classes, UnorderedElementsAre(EC::None));
+    }
+  }
+}
