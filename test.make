@@ -16,6 +16,7 @@ INC += -I$(GMOCK_DIR)/include
 
 SRC += src/ascii-matrix.c++
 SRC += src/diagram.c++
+SRC += src/patterns.c++
 
 SRC += test/ascii-matrix-test.c++
 SRC += test/diagram-test.c++
