@@ -1,5 +1,6 @@
 #include "diagram.h++"
 
+#include <cassert>
 #include <istream>
 
 using std::istream;
@@ -60,4 +61,24 @@ pair<size_t, size_t> Diagram::getDimensions(istream &input) {
   if (line.size() == 0) --height;
 
   return make_pair(width, height);
+}
+
+
+bool Diagram::checkPattern(size_t pos_x, size_t pos_y, const Pattern &pattern) const {
+  assert(pos_x + pattern.width()  <= width());
+  assert(pos_y + pattern.height() <= height());
+
+  for (size_t pat_x = 0; pat_x < pattern.width(); ++pat_x) {
+    for (size_t pat_y = 0; pat_y < pattern.height(); ++pat_y) {
+      auto pat_value = pattern[pat_x][pat_y];
+
+      if (pat_value.c != 0 &&
+          pat_value.c != mMatrix[pos_x + pat_x][pos_y + pat_y].c)
+      {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }

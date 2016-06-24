@@ -1,4 +1,6 @@
 #include "diagram.h++"
+#include "patterns.h++"
+
 #include "test-utils.h++"
 
 #include "gtest/gtest.h"
@@ -38,4 +40,24 @@ TEST_F(DiagramTest, shouldInitWithValues) {
   value.c = 'd'; EXPECT_THAT(d[1][1], DiagramElementEq(value));
   value.c = 'e'; EXPECT_THAT(d[0][2], DiagramElementEq(value));
   value.c = 'f'; EXPECT_THAT(d[1][2], DiagramElementEq(value));
+}
+
+
+TEST_F(DiagramTest, shouldCheckPattern) {
+  ss.str("  | \n"
+         "--+ \n");
+  Diagram d{ss};
+
+  EXPECT_THAT(d.checkPattern(0, 1, Patterns::Lines::Horizontal), true);
+  EXPECT_THAT(d.checkPattern(1, 0, Patterns::Corners::NW), true);
+}
+
+
+TEST_F(DiagramTest, shouldNotCheckPattern) {
+  ss.str("  | \n"
+         "--+ \n");
+  Diagram d{ss};
+
+  EXPECT_THAT(d.checkPattern(0, 0, Patterns::Lines::Horizontal), false);
+  EXPECT_THAT(d.checkPattern(2, 0, Patterns::Corners::NW), false);
 }

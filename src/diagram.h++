@@ -64,6 +64,17 @@ public:
   /// @return Vertical size of this diagram.
   size_t height() const;
 
+  /// Checks if the diagram kept in this object is matched to the
+  /// provided pattern at a certain position.
+  ///
+  /// @param pos_x Position to check the patter by X-axis.
+  /// @param pos_y Position to check the patter by Y-axis.
+  /// @param pattern Pattern to be checked.
+  ///
+  /// @retval true  Diagram is matched to the pattern.
+  /// @retval false Diagram isn't matched to the pattern.
+  bool checkPattern(size_t pos_x, size_t pos_y, const Pattern &pattern) const;
+
 private:
   Matrix<DiagramElement> mMatrix; ///< This diagram's internal data.
 
