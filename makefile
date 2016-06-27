@@ -1,6 +1,11 @@
 .PHONY: clean test
 
 
+# Diagrammer
+diagrammer: build
+	make -f diagrammer.make
+
+
 # Test
 test: build
 	make -f test.make test

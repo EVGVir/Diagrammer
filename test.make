@@ -14,7 +14,7 @@ INC += -Isrc
 INC += -I$(GTEST_DIR)/include
 INC += -I$(GMOCK_DIR)/include
 
-SRC += src/*.c++
+SRC += $(filter-out src/main.c++,$(wildcard src/*.c++)) # There must not be two main() functions.
 SRC += test/*.c++
 
 LIBS += `pkg-config --libs --cflags cairo`
