@@ -2,18 +2,18 @@
 
 
 DraftingTable::DraftingTable(size_t width, size_t height, double fontsize) {
-  mSurface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, width, height);
+  auto fontExtents = getFontExtents(fontsize);
+
+  mElementWidth  = fontExtents.max_x_advance;
+  mElementHeight = fontExtents.height;
+
+  mSurface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, width * mElementWidth, height * mElementHeight);
   mContext = cairo_create(mSurface);
   cairo_set_source_rgb(mContext, 1.0, 1.0, 1.0);
   cairo_paint(mContext);
   cairo_set_source_rgb(mContext, 0.0, 0.0, 0.0);
   cairo_select_font_face(mContext, "monospace", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
   cairo_set_font_size(mContext, fontsize);
-
-  cairo_font_extents_t fontExtents;
-  cairo_font_extents(mContext, &fontExtents);
-  mElementWidth  = fontExtents.max_x_advance;
-  mElementHeight = fontExtents.height;
 }
 
 
@@ -70,4 +70,19 @@ void DraftingTable::drawLineW(size_t x, size_t y) {
 void DraftingTable::convertCharPosToImageCoordiantes(size_t &x, size_t &y) const {
   x = x * mElementWidth;
   y = y * mElementHeight;
+}
+
+
+cairo_font_extents_t DraftingTable::getFontExtents(double fontsize) const {
+  cairo_font_extents_t result;
+
+  auto tmpSurface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, 0, 0);
+  auto tmpContext = cairo_create(tmpSurface);
+  cairo_select_font_face(tmpContext, "monospace", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+  cairo_set_font_size(tmpContext, fontsize);
+  cairo_font_extents(tmpContext, &result);
+  cairo_destroy(tmpContext);
+  cairo_surface_destroy(tmpSurface);
+
+  return result;
 }

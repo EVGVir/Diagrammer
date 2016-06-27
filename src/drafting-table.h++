@@ -11,8 +11,8 @@
 /// other.
 class DraftingTable {
 public:
-  /// @param width Diagram's width in Cairo units.
-  /// @param height Diagram's height in Cairo units.
+  /// @param width Diagram's width in number of characters.
+  /// @param height Diagram's height in number of characters.
   /// @param fontsize Size of the font to draw the diagram in Cairo
   ///   units.
   DraftingTable(size_t width, size_t height, double fontsize);
@@ -66,4 +66,9 @@ private:
   /// @param[in,out] x Horizontal position to be converted.
   /// @param[in,out] y Vertical position to be converted.
   void convertCharPosToImageCoordiantes(size_t &x, size_t &y) const;
+
+  /// @return Font extents for desired fontsize.
+  /// @param fontsize Size of the font to get it extents, in Cairo
+  ///   units.
+  cairo_font_extents_t getFontExtents(double fontsize) const;
 };
