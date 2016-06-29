@@ -10,6 +10,11 @@ using std::pair;
 using std::string;
 
 
+bool DiagramElement::hasClass(ElementClass c) const {
+  return classes.find(c) != classes.end();
+}
+
+
 Diagram::Diagram(istream &input):
   mMatrix{0, 0}
 {

@@ -27,6 +27,14 @@ typedef std::set<ElementClass> ElementClasses;
 struct DiagramElement {
   char           c;            ///< A character.
   ElementClasses classes;      ///< Classes assigned to the character.
+
+  /// @return Whether a class is assigned to this element.
+  ///
+  /// @param c Class to be checked.
+  ///
+  /// @retval true  The class is assigned to this element.
+  /// @retval false The class isn't assigned to this element.
+  bool hasClass(ElementClass c) const;
 };
 
 
