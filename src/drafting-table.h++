@@ -16,43 +16,43 @@ public:
   /// @param fontsize Size of the font to draw the diagram in Cairo
   ///   units.
   DraftingTable(size_t width, size_t height, double fontsize);
- ~DraftingTable();
+  virtual ~DraftingTable();
 
   /// Saves the drawn diagram into a PNG-file.
   ///
   /// @param filename File to save the diagram into.
-  void saveToPNG(const std::string &filename) const;
+  virtual void saveToPNG(const std::string &filename) const;
 
   /// Draws a character.
   ///
   /// @param x Character to be drawn horizontal position.
   /// @param y Character to be drawn vertical position.
   /// @param c Character to be drawn.
-  void drawCharacter(size_t x, size_t y, char c);
+  virtual void drawCharacter(size_t x, size_t y, char c);
 
   /// Draws a line from the element's center to the North.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  void drawLineN(size_t x, size_t y);
+  virtual void drawLineN(size_t x, size_t y);
 
   /// Draws a line from the element's center to the South.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  void drawLineS(size_t x, size_t y);
+  virtual void drawLineS(size_t x, size_t y);
 
   /// Draws a line from the element's center to the East.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  void drawLineE(size_t x, size_t y);
+  virtual void drawLineE(size_t x, size_t y);
 
   /// Draws a line from the element's center to the West.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  void drawLineW(size_t x, size_t y);
+  virtual void drawLineW(size_t x, size_t y);
 
 private:
   size_t           mElementWidth;  ///< Width of an element in Cairo units.
