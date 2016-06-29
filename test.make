@@ -14,13 +14,8 @@ INC += -Isrc
 INC += -I$(GTEST_DIR)/include
 INC += -I$(GMOCK_DIR)/include
 
-SRC += src/diagram.c++
-SRC += src/drafting-table.c++
-SRC += src/patterns.c++
-
-SRC += test/diagram-test.c++
-SRC += test/matrix-test.c++
-SRC += test/test-utils.c++
+SRC += src/*.c++
+SRC += test/*.c++
 
 LIBS += `pkg-config --libs --cflags cairo`
 LIBS += -Lbuild/google-test/googlemock/make -l:gmock_main.a
