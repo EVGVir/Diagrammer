@@ -67,6 +67,22 @@ void DraftingTable::drawLineW(size_t x, size_t y) {
 }
 
 
+void DraftingTable::drawArrowN(size_t x, size_t y) {
+}
+
+
+void DraftingTable::drawArrowS(size_t x, size_t y) {
+}
+
+
+void DraftingTable::drawArrowE(size_t x, size_t y) {
+}
+
+
+void DraftingTable::drawArrowW(size_t x, size_t y) {
+}
+
+
 void DraftingTable::convertCharPosToImageCoordiantes(size_t &x, size_t &y) const {
   x = x * mElementWidth;
   y = y * mElementHeight;

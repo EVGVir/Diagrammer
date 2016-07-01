@@ -24,4 +24,20 @@ void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t
   if (e.hasClass(ElementClass::LineW)) {
     table.drawLineW(x, y);
   }
+
+  if (e.hasClass(ElementClass::ArrowN)) {
+    table.drawArrowN(x, y);
+  }
+
+  if (e.hasClass(ElementClass::ArrowS)) {
+    table.drawArrowS(x, y);
+  }
+
+  if (e.hasClass(ElementClass::ArrowE)) {
+    table.drawArrowE(x, y);
+  }
+
+  if (e.hasClass(ElementClass::ArrowW)) {
+    table.drawArrowW(x, y);
+  }
 }

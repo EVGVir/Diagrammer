@@ -12,4 +12,8 @@ public:
   MOCK_METHOD2(drawLineS, void(size_t x, size_t y));
   MOCK_METHOD2(drawLineE, void(size_t x, size_t y));
   MOCK_METHOD2(drawLineW, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowN, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowS, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowE, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowW, void(size_t x, size_t y));
 };

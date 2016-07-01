@@ -54,6 +54,30 @@ public:
   /// @param y Element to be drawn vertical position.
   virtual void drawLineW(size_t x, size_t y);
 
+  /// Draws an arrow to the element's center from the South.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawArrowN(size_t x, size_t y);
+
+  /// Draws an arrow to the element's center from the North.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawArrowS(size_t x, size_t y);
+
+  /// Draws an arrow to the element's center from the West.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawArrowE(size_t x, size_t y);
+
+  /// Draws an arrow to the element's center from the East.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawArrowW(size_t x, size_t y);
+
 private:
   size_t           mElementWidth;  ///< Width of an element in Cairo units.
   size_t           mElementHeight; ///< Height of an element in Cairo units.

@@ -66,3 +66,35 @@ TEST_F(DrawElementTest, shouldDrawLineW) {
   EXPECT_CALL(table, drawLineW(x, y));
   drawElement(e, table, x, y);
 }
+
+
+TEST_F(DrawElementTest, shouldDrawArrowN) {
+  DiagramElement e = {'e', {ElementClass::ArrowN}};
+
+  EXPECT_CALL(table, drawArrowN(x, y));
+  drawElement(e, table, x, y);
+}
+
+
+TEST_F(DrawElementTest, shouldDrawArrowS) {
+  DiagramElement e = {'e', {ElementClass::ArrowS}};
+
+  EXPECT_CALL(table, drawArrowS(x, y));
+  drawElement(e, table, x, y);
+}
+
+
+TEST_F(DrawElementTest, shouldDrawArrowE) {
+  DiagramElement e = {'e', {ElementClass::ArrowE}};
+
+  EXPECT_CALL(table, drawArrowE(x, y));
+  drawElement(e, table, x, y);
+}
+
+
+TEST_F(DrawElementTest, shouldDrawArrowW) {
+  DiagramElement e = {'e', {ElementClass::ArrowW}};
+
+  EXPECT_CALL(table, drawArrowW(x, y));
+  drawElement(e, table, x, y);
+}
