@@ -102,6 +102,11 @@ public:
   /// @param y Element to be drawn vertical position.
   virtual void drawArrowWtoEdge(size_t x, size_t y);
 
+  /// Draws horizontal and vertical lines all over the resulting
+  /// picture. The distance between lines is equal to maximum
+  /// characters dimensions.
+  virtual void drawMesh();
+
 private:
   size_t           mElementWidth;  ///< Width of an element in Cairo units.
   size_t           mElementHeight; ///< Height of an element in Cairo units.

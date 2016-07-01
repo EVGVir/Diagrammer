@@ -158,6 +158,30 @@ void DraftingTable::drawArrow() {
 }
 
 
+void DraftingTable::drawMesh() {
+  int width = cairo_image_surface_get_width(mSurface);
+  int height = cairo_image_surface_get_height(mSurface);
+
+  cairo_save(mContext);
+
+  for (int y = mElementHeight; y < height; y += mElementHeight) {
+    cairo_move_to(mContext, 0, y);
+    cairo_line_to(mContext, width, y);
+  }
+
+  for (int x = mElementWidth; x < width; x += mElementWidth) {
+    cairo_move_to(mContext, x, 0);
+    cairo_line_to(mContext, x, height);
+  }
+
+  cairo_set_source_rgb(mContext, 0.6, 0.6, 0.6);
+  cairo_set_line_width(mContext, 0.5);
+  cairo_stroke(mContext);
+
+  cairo_restore(mContext);
+}
+
+
 void DraftingTable::convertCharPosToImageCoordiantes(size_t &x, size_t &y) const {
   x = x * mElementWidth;
   y = y * mElementHeight;
