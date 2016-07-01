@@ -14,4 +14,10 @@ namespace Patterns {
     extern const Pattern SW;
     extern const Pattern NW;
   }
+  namespace Arrows {
+    extern const Pattern N;
+    extern const Pattern S;
+    extern const Pattern E;
+    extern const Pattern W;
+  }
 }

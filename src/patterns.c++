@@ -49,4 +49,33 @@ namespace Patterns {
       {{'-', {C::LineW, C::LineE}}, {'+', {C::LineN, C::LineW}}}
     }};
   }
+
+
+  namespace Arrows {
+    /// ^
+    /// |
+    const Pattern N{{
+      {{ 0 , {C::ArrowN}}},
+      {{'^', {C::LineS, C::LineN}}},
+      {{'|', {C::None}}}
+    }};
+
+    /// |
+    /// v
+    const Pattern S{{
+      {{'|', {C::None}}},
+      {{'v', {C::LineN, C::LineS}}},
+      {{ 0 , {C::ArrowS}}}
+    }};
+
+    /// ->
+    const Pattern E{{
+      {{'-', {C::None}}, {'>', {C::LineW, C::LineE}},  { 0 , {C::ArrowE}}}
+    }};
+
+    /// <-
+    const Pattern W{{
+      {{ 0 , {C::ArrowW}}, {'<', {C::LineE, C::LineW}}, {'-', {C::None}}}
+    }};
+  }
 }
