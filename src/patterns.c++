@@ -1,4 +1,5 @@
 #include "patterns.h++"
+#include "diagram.h++"
 
 
 namespace Patterns {
@@ -77,5 +78,19 @@ namespace Patterns {
     const Pattern W{{
       {{ 0 , {C::ArrowW}}, {'<', {C::LineE, C::LineW}}, {'-', {C::None}}}
     }};
+  }
+
+
+  void applyAll(Diagram &diagram) {
+    diagram.applyPattern(Lines::Horizontal);
+    diagram.applyPattern(Lines::Vertical);
+    diagram.applyPattern(Corners::NE);
+    diagram.applyPattern(Corners::SE);
+    diagram.applyPattern(Corners::SW);
+    diagram.applyPattern(Corners::NW);
+    diagram.applyPattern(Arrows::N);
+    diagram.applyPattern(Arrows::S);
+    diagram.applyPattern(Arrows::E);
+    diagram.applyPattern(Arrows::W);
   }
 }

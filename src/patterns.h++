@@ -20,4 +20,9 @@ namespace Patterns {
     extern const Pattern E;
     extern const Pattern W;
   }
+
+  /// Applies all available patterns to a diagram.
+  ///
+  /// @param diagram Diagram, patterns to be applied to.
+  void applyAll(Diagram &diagram);
 }
