@@ -58,25 +58,25 @@ namespace Patterns {
     const Pattern N{{
       {{ 0 , {C::ArrowN}}},
       {{'^', {C::LineS, C::LineN}}},
-      {{'|', {C::None}}}
+      {{'|', {C::LineS, C::LineN}}}
     }};
 
     /// |
     /// v
     const Pattern S{{
-      {{'|', {C::None}}},
+      {{'|', {C::LineN, C::LineS}}},
       {{'v', {C::LineN, C::LineS}}},
       {{ 0 , {C::ArrowS}}}
     }};
 
     /// ->
     const Pattern E{{
-      {{'-', {C::None}}, {'>', {C::LineW, C::LineE}},  { 0 , {C::ArrowE}}}
+      {{'-', {C::LineW, C::LineE}}, {'>', {C::LineW, C::LineE}},  { 0 , {C::ArrowE}}}
     }};
 
     /// <-
     const Pattern W{{
-      {{ 0 , {C::ArrowW}}, {'<', {C::LineE, C::LineW}}, {'-', {C::None}}}
+      {{ 0 , {C::ArrowW}}, {'<', {C::LineE, C::LineW}}, {'-', {C::LineE, C::LineW}}}
     }};
   }
 
