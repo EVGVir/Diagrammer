@@ -81,8 +81,14 @@ public:
 private:
   size_t           mElementWidth;  ///< Width of an element in Cairo units.
   size_t           mElementHeight; ///< Height of an element in Cairo units.
+  double           mArrowLength;   ///< Length of an arrow in Cairo units.
+  double           mArrowWidth;    ///< Width of an arrow in Cairo units.
   cairo_surface_t *mSurface;       ///< Cairo's easel where diagram is drawn.
   cairo_t         *mContext;       ///< Cairo's context.
+
+  /// Draws an arrow that points to the coordiante origin from the
+  /// South.
+  void drawArrow();
 
   /// Converts a character position to Cairo units in place (replaces
   /// input parameters by result).
