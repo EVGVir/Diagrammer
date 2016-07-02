@@ -3,6 +3,16 @@
 #include "diagram.h++"
 #include "drafting-table.h++"
 
+
+/// Draws a diagram using a drafting table.
+///
+/// @note Patterns must be applied to the diagram prio to its drawing.
+///
+/// @param diagram Diagram to be drawn.
+/// @param table Drafting table that is used to draw the diagram.
+void drawDiagram(Diagram &diagram, DraftingTable &table);
+
+
 /// Draws a diagram element on a drafting table.
 ///
 /// @param e The element to be drawn.

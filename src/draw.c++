@@ -1,6 +1,15 @@
 #include "draw.h++"
 
 
+void drawDiagram(Diagram &diagram, DraftingTable &table) {
+  for (size_t x = 0; x < diagram.width(); ++x) {
+    for (size_t y = 0; y < diagram.height(); ++y) {
+      drawElement(diagram[x][y], table, x, y);
+    }
+  }
+}
+
+
 void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t y) {
   if (e.classes.size() == 0 or
       (e.classes.size() == 1 and e.hasClass(ElementClass::None)))
