@@ -151,3 +151,69 @@ TEST_F(DrawDiagramTest, shouldDrawArrowW) {
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   drawDiagram(d, table);
 }
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowNtoHorizontalLine) {
+  ss.str("--\n"
+         "^ \n"
+         "| ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowStoHorizontalLine) {
+  ss.str("| \n"
+         "v \n"
+         "--");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowEtoVerticalLine) {
+  ss.str("->|\n"
+         "  |");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowWtoVerticalLine) {
+  ss.str("|<-\n"
+         "|  ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
