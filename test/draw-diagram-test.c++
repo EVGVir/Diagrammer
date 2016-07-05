@@ -12,6 +12,31 @@ using namespace testing;
 using namespace std;
 
 
+/// Tests in this file covers following cases.
+///
+/// One element
+/// -----------
+///
+/// --   |   ^   |   ->   <-
+///      |   |   v
+///
+/// |    +-   -+    |
+/// +-   |     |   -+
+///
+///
+/// Two elements
+/// ------------
+///
+/// --   |    ->|   |<-   ^   <->
+/// ^    v      |   |     |
+/// |    --               v
+///
+/// |     |   |     |   ->+-     |    -+<-    |
+/// +-   -+   v     v     |    ->+-    |     -+<-
+/// ^     ^   +-   -+
+/// |     |   |     |
+
+
 struct DrawDiagramTest: public Test {
   StrictMock<DraftingTableMock> table;
   stringstream ss;
