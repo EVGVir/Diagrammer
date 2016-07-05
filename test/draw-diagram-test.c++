@@ -247,3 +247,139 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalArrow) {
   EXPECT_CALL(table, drawLineW(_, _)).Times(3);
   drawDiagram(d, table);
 }
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowNtoCornerNE) {
+  ss.str("| \n"
+         "+-\n"
+         "^ \n"
+         "| ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(4);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _));
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowNtoCornerNW) {
+  ss.str(" |\n"
+         "-+\n"
+         " ^\n"
+         " |");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(4);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawLineE(_, _));
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowStoCornerSE) {
+  ss.str("| \n"
+         "v \n"
+         "+-\n"
+         "| ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _));
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowStoCornerSW) {
+  ss.str(" |\n"
+         " v\n"
+         "-+\n"
+         " |");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawLineE(_, _));
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowEtoCornerSE) {
+  ss.str("->+-\n"
+         "  | ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawLineN(_, _));
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowEtoCornerNE) {
+  ss.str("  | \n"
+         "->+-");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _));
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerSW) {
+  ss.str("-+<-\n"
+         " |  ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawLineN(_, _));
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerNW) {
+  ss.str(" |  \n"
+         "-+<-");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _));
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
