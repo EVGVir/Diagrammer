@@ -11,9 +11,7 @@ void drawDiagram(Diagram &diagram, DraftingTable &table) {
 
 
 void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t y) {
-  if (e.classes.size() == 0 or
-      (e.classes.size() == 1 and e.hasClass(ElementClass::None)))
-  {
+  if (e.classes.size() == 0) {
     table.drawCharacter(x, y, e.c);
     return;
   }

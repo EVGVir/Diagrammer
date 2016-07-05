@@ -8,7 +8,6 @@ using namespace testing;
 
 ostream & operator << (ostream &s, const ElementClass &c) {
   switch (c) {
-  case ElementClass::None:   s << "None";  break;
   case ElementClass::LineN:  s << "LineN"; break;
   case ElementClass::LineS:  s << "LineS"; break;
   case ElementClass::LineE:  s << "LineE"; break;

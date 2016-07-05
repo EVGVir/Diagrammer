@@ -28,14 +28,6 @@ TEST_F(DrawElementTest, shouldDrawCharacterIfNoClasses) {
 }
 
 
-TEST_F(DrawElementTest, shouldDrawCharacterIfClassNone) {
-  DiagramElement e = {'e', {ElementClass::None}};
-
-  EXPECT_CALL(table, drawCharacter(x, y, e.c));
-  drawElement(e, table, x, y);
-}
-
-
 TEST_F(DrawElementTest, shouldDrawLineN) {
   DiagramElement e = {'e', {ElementClass::LineN}};
 

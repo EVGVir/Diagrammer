@@ -28,7 +28,7 @@ Diagram::Diagram(istream &input):
     for (size_t x{0}; x < line.size(); ++x) {
       mMatrix[x][y] = DiagramElement {
         line[x],
-        ElementClasses{ElementClass::None}
+        ElementClasses{}
       };
     }
   }

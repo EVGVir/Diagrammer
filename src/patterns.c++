@@ -25,7 +25,7 @@ namespace Patterns {
     /// |
     /// +-
     const Pattern NE{{
-      {{'|', {C::LineS, C::LineN}}, { 0 , {C::None}}},
+      {{'|', {C::LineS, C::LineN}}, { 0 , {}}},
       {{'+', {C::LineN, C::LineE}}, {'-', {C::LineW, C::LineE}}}
     }};
 
@@ -33,20 +33,20 @@ namespace Patterns {
     /// |
     const Pattern SE{{
       {{'+', {C::LineS, C::LineE}}, {'-', {C::LineW, C::LineE}}},
-      {{'|', {C::LineS, C::LineN}}, { 0 , {C::None}}}
+      {{'|', {C::LineS, C::LineN}}, { 0 , {}}}
     }};
 
     /// -+
     ///  |
     const Pattern SW{{
       {{'-', {C::LineW, C::LineE}}, {'+', {C::LineS, C::LineW}}},
-      {{ 0 , {C::None}},            {'|', {C::LineS, C::LineN}}}
+      {{ 0 , {}},                   {'|', {C::LineS, C::LineN}}}
     }};
 
     ///  |
     /// -+
     const Pattern NW{{
-      {{ 0 , {C::None}},            {'|', {C::LineS, C::LineN}}},
+      {{ 0 , {}},                   {'|', {C::LineS, C::LineN}}},
       {{'-', {C::LineW, C::LineE}}, {'+', {C::LineN, C::LineW}}}
     }};
   }

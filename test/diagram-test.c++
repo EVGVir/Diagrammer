@@ -35,7 +35,7 @@ TEST_F(DiagramTest, shouldGetDimensions) {
 TEST_F(DiagramTest, shouldInitWithValues) {
   Diagram d{ss};
 
-  auto value = DiagramElement{0, ElementClasses{EC::None}};
+  auto value = DiagramElement{0, ElementClasses{}};
 
   value.c = 'a'; EXPECT_THAT(d[0][0], DiagramElementEq(value));
   value.c = 'b'; EXPECT_THAT(d[1][0], DiagramElementEq(value));
@@ -73,19 +73,19 @@ TEST_F(DiagramTest, shouldApplyPatternAtPos) {
   Diagram d{ss};
 
   d.applyPatternAtPos(0, 0, Patterns::Lines::Vertical);
-  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::None, EC::LineS, EC::LineN));
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::None, EC::LineS, EC::LineN));
+  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
 
   d.applyPatternAtPos(0, 1, Patterns::Corners::NE);
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::None, EC::LineS, EC::LineN));
-  EXPECT_THAT(d[1][1].classes, ElementsAre(EC::None));
-  EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::None, EC::LineN, EC::LineE));
-  EXPECT_THAT(d[1][2].classes, UnorderedElementsAre(EC::None, EC::LineW, EC::LineE));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
+  EXPECT_THAT(d[1][1].classes, ElementsAre());
+  EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::LineN, EC::LineE));
+  EXPECT_THAT(d[1][2].classes, UnorderedElementsAre(EC::LineW, EC::LineE));
 
-  EXPECT_THAT(d[1][0].classes, ElementsAre(EC::None));
-  EXPECT_THAT(d[2][0].classes, ElementsAre(EC::None));
-  EXPECT_THAT(d[2][1].classes, ElementsAre(EC::None));
-  EXPECT_THAT(d[2][2].classes, ElementsAre(EC::None));
+  EXPECT_THAT(d[1][0].classes, ElementsAre());
+  EXPECT_THAT(d[2][0].classes, ElementsAre());
+  EXPECT_THAT(d[2][1].classes, ElementsAre());
+  EXPECT_THAT(d[2][2].classes, ElementsAre());
 }
 
 
@@ -95,14 +95,14 @@ TEST_F(DiagramTest, shouldApplyPattern) {
   Diagram d{ss};
 
   d.applyPattern(Patterns::Lines::Horizontal);
-  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::None));
-  EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
-  EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
-  EXPECT_THAT(d[3][0].classes, UnorderedElementsAre(EC::None));
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
-  EXPECT_THAT(d[1][1].classes, UnorderedElementsAre(EC::None, EC::LineE, EC::LineW));
-  EXPECT_THAT(d[2][1].classes, UnorderedElementsAre(EC::None));
-  EXPECT_THAT(d[3][1].classes, UnorderedElementsAre(EC::None));
+  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre());
+  EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[3][0].classes, UnorderedElementsAre());
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[1][1].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[2][1].classes, UnorderedElementsAre());
+  EXPECT_THAT(d[3][1].classes, UnorderedElementsAre());
 }
 
 
@@ -115,7 +115,7 @@ TEST_F(DiagramTest, shouldNotApplyPattern) {
   d.applyPattern(Patterns::Corners::NW);
   for (size_t x = 0; x < d.width(); ++x) {
     for (size_t y = 0; y < d.height(); ++y) {
-      EXPECT_THAT(d[x][y].classes, UnorderedElementsAre(EC::None));
+      EXPECT_THAT(d[x][y].classes, UnorderedElementsAre());
     }
   }
 }
