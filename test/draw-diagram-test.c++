@@ -39,6 +39,14 @@ using namespace std;
 /// +-   -+   v     v     |    ->+-    |     -+<-
 /// ^     ^   +-   -+
 /// |     |   |     |
+///
+///
+/// Other
+/// -----
+///
+///  |
+/// -+-
+///  |
 
 
 struct DrawDiagramTest: public Test {
@@ -472,5 +480,21 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerNW) {
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawLinesCross) {
+  ss.str(" | \n"
+         "-+-\n"
+         " | ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
   drawDiagram(d, table);
 }
