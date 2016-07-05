@@ -27,6 +27,10 @@ using namespace std;
 /// Two elements
 /// ------------
 ///
+/// |     |    |    -+-
+/// +-   -+   -+-    |
+/// |     |
+///
 /// --   |    ->|   |<-   ^   <->
 /// ^    v      |   |     |
 /// |    --               v
@@ -174,6 +178,68 @@ TEST_F(DrawDiagramTest, shouldDrawArrowW) {
   EXPECT_CALL(table, drawArrowW(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawCornersNEandSE) {
+  ss.str("| \n"
+         "+-\n"
+         "| ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _));
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawCornersNWandSW) {
+  ss.str(" |\n"
+         "-+\n"
+         " |");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineE(_, _));
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawCornersNEandNW) {
+  ss.str(" | \n"
+         "-+-");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawCornersSEandSW) {
+  ss.str("-+-\n"
+         " | ");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawLineN(_, _));
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
   drawDiagram(d, table);
 }
 
