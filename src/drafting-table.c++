@@ -112,6 +112,41 @@ void DraftingTable::drawArrowWtoCenter(size_t x, size_t y) {
 }
 
 
+void DraftingTable::drawArrowNtoEdge(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  cairo_translate(mContext, x + 0.5 * mElementWidth, y + mElementHeight);
+  drawArrow();
+  cairo_identity_matrix(mContext);
+}
+
+
+void DraftingTable::drawArrowStoEdge(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  cairo_translate(mContext, x + 0.5 * mElementWidth, y);
+  cairo_rotate(mContext, PI);
+  drawArrow();
+  cairo_identity_matrix(mContext);
+}
+
+
+void DraftingTable::drawArrowEtoEdge(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  cairo_translate(mContext, x, y + 0.5 * mElementHeight);
+  cairo_rotate(mContext, 0.5 * PI);
+  drawArrow();
+  cairo_identity_matrix(mContext);
+}
+
+
+void DraftingTable::drawArrowWtoEdge(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  cairo_translate(mContext, x + mElementWidth, y + 0.5 * mElementHeight);
+  cairo_rotate(mContext, -0.5 * PI);
+  drawArrow();
+  cairo_identity_matrix(mContext);
+}
+
+
 void DraftingTable::drawArrow() {
   cairo_move_to(mContext,               0.0,           0.0);
   cairo_line_to(mContext, 0.5 * mArrowWidth,  mArrowLength);

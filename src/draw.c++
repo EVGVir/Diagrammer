@@ -33,18 +33,38 @@ void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t
   }
 
   if (e.hasClass(ElementClass::ArrowN)) {
-    table.drawArrowNtoCenter(x, y);
+    if (!e.isCharacter()) {
+      table.drawArrowNtoCenter(x, y);
+    } else {
+      table.drawCharacter(x, y, e.c);
+      table.drawArrowNtoEdge(x, y);
+    }
   }
 
   if (e.hasClass(ElementClass::ArrowS)) {
-    table.drawArrowStoCenter(x, y);
+    if (!e.isCharacter()) {
+      table.drawArrowStoCenter(x, y);
+    } else {
+      table.drawCharacter(x, y, e.c);
+      table.drawArrowStoEdge(x, y);
+    }
   }
 
   if (e.hasClass(ElementClass::ArrowE)) {
-    table.drawArrowEtoCenter(x, y);
+    if (!e.isCharacter()) {
+      table.drawArrowEtoCenter(x, y);
+    } else {
+      table.drawCharacter(x, y, e.c);
+      table.drawArrowEtoEdge(x, y);
+    }
   }
 
   if (e.hasClass(ElementClass::ArrowW)) {
-    table.drawArrowWtoCenter(x, y);
+    if (!e.isCharacter()) {
+      table.drawArrowWtoCenter(x, y);
+    } else {
+      table.drawCharacter(x, y, e.c);
+      table.drawArrowWtoEdge(x, y);
+    }
   }
 }

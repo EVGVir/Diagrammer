@@ -16,4 +16,8 @@ public:
   MOCK_METHOD2(drawArrowStoCenter, void(size_t x, size_t y));
   MOCK_METHOD2(drawArrowEtoCenter, void(size_t x, size_t y));
   MOCK_METHOD2(drawArrowWtoCenter, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowNtoEdge, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowStoEdge, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowEtoEdge, void(size_t x, size_t y));
+  MOCK_METHOD2(drawArrowWtoEdge, void(size_t x, size_t y));
 };

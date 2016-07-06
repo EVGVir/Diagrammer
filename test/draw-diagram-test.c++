@@ -40,6 +40,10 @@ using namespace std;
 /// ^     ^   +-   -+
 /// |     |   |     |
 ///
+/// a   |   ->a   a<-
+/// ^   v
+/// |   a
+///
 ///
 /// Other
 /// -----
@@ -480,6 +484,62 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerNW) {
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowNtoCharacter) {
+  ss.str("a\n"
+         "^\n"
+         "|");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowNtoEdge(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowStoCharacter) {
+  ss.str("|\n"
+         "v\n"
+         "a");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowStoEdge(_, _));
+  EXPECT_CALL(table, drawLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineS(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowEtoCharacter) {
+  ss.str("->a");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowEtoEdge(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawArrowWtoCharacter) {
+  ss.str("a<-");
+  Diagram d{ss};
+  Patterns::applyAll(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowWtoEdge(_, _));
+  EXPECT_CALL(table, drawLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   drawDiagram(d, table);
 }
 

@@ -15,6 +15,16 @@ bool DiagramElement::hasClass(ElementClass c) const {
 }
 
 
+bool DiagramElement::isCharacter() const {
+  return
+    !hasClass(ElementClass::LineN) and
+    !hasClass(ElementClass::LineS) and
+    !hasClass(ElementClass::LineE) and
+    !hasClass(ElementClass::LineW) and
+    c != ' ';
+}
+
+
 Diagram::Diagram(istream &input):
   mMatrix{0, 0}
 {

@@ -38,6 +38,15 @@ struct DiagramElement {
   /// @retval true  The class is assigned to this element.
   /// @retval false The class isn't assigned to this element.
   bool hasClass(ElementClass c) const;
+
+  /// @return Whether this element is a character.
+  ///
+  /// Empty spaces or elements classified as a line are not
+  /// characters.
+  ///
+  /// @retval true  This element is a character.
+  /// @retval false This element isn't a character.
+  bool isCharacter() const;
 };
 
 
