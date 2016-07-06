@@ -33,18 +33,18 @@ void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t
   }
 
   if (e.hasClass(ElementClass::ArrowN)) {
-    table.drawArrowN(x, y);
+    table.drawArrowNtoCenter(x, y);
   }
 
   if (e.hasClass(ElementClass::ArrowS)) {
-    table.drawArrowS(x, y);
+    table.drawArrowStoCenter(x, y);
   }
 
   if (e.hasClass(ElementClass::ArrowE)) {
-    table.drawArrowE(x, y);
+    table.drawArrowEtoCenter(x, y);
   }
 
   if (e.hasClass(ElementClass::ArrowW)) {
-    table.drawArrowW(x, y);
+    table.drawArrowWtoCenter(x, y);
   }
 }

@@ -77,7 +77,7 @@ void DraftingTable::drawLineW(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawArrowN(size_t x, size_t y) {
+void DraftingTable::drawArrowNtoCenter(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   drawArrow();
@@ -85,7 +85,7 @@ void DraftingTable::drawArrowN(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawArrowS(size_t x, size_t y) {
+void DraftingTable::drawArrowStoCenter(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, PI);
@@ -94,7 +94,7 @@ void DraftingTable::drawArrowS(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawArrowE(size_t x, size_t y) {
+void DraftingTable::drawArrowEtoCenter(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, 0.5 * PI);
@@ -103,7 +103,7 @@ void DraftingTable::drawArrowE(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawArrowW(size_t x, size_t y) {
+void DraftingTable::drawArrowWtoCenter(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, -0.5 * PI);

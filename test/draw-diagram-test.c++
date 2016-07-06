@@ -145,7 +145,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowN) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   drawDiagram(d, table);
@@ -159,7 +159,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowS) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   drawDiagram(d, table);
@@ -171,7 +171,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowE) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   drawDiagram(d, table);
@@ -183,7 +183,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowW) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   drawDiagram(d, table);
@@ -261,7 +261,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoHorizontalLine) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
-  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
@@ -278,7 +278,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoHorizontalLine) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
-  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
@@ -294,7 +294,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoVerticalLine) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
-  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
@@ -310,7 +310,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoVerticalLine) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
-  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(2);
@@ -327,8 +327,8 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedVerticalArrow) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowN(_, _));
-  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(3);
   EXPECT_CALL(table, drawLineS(_, _)).Times(3);
   drawDiagram(d, table);
@@ -340,8 +340,8 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalArrow) {
   Diagram d{ss};
   Patterns::applyAll(d);
 
-  EXPECT_CALL(table, drawArrowE(_, _));
-  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(3);
   EXPECT_CALL(table, drawLineW(_, _)).Times(3);
   drawDiagram(d, table);
@@ -358,7 +358,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoCornerNE) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(4);
   EXPECT_CALL(table, drawLineS(_, _)).Times(3);
-  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -376,7 +376,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoCornerNW) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(4);
   EXPECT_CALL(table, drawLineS(_, _)).Times(3);
-  EXPECT_CALL(table, drawArrowN(_, _));
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _));
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -394,7 +394,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoCornerSE) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(3);
   EXPECT_CALL(table, drawLineS(_, _)).Times(4);
-  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _)).Times(2);
   EXPECT_CALL(table, drawLineW(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -412,7 +412,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoCornerSW) {
 
   EXPECT_CALL(table, drawLineN(_, _)).Times(3);
   EXPECT_CALL(table, drawLineS(_, _)).Times(4);
-  EXPECT_CALL(table, drawArrowS(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
   EXPECT_CALL(table, drawLineE(_, _));
   EXPECT_CALL(table, drawLineW(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -428,7 +428,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoCornerSE) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(4);
   EXPECT_CALL(table, drawLineW(_, _)).Times(3);
-  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _));
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -444,7 +444,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoCornerNE) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(4);
   EXPECT_CALL(table, drawLineW(_, _)).Times(3);
-  EXPECT_CALL(table, drawArrowE(_, _));
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -460,7 +460,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerSW) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(3);
   EXPECT_CALL(table, drawLineW(_, _)).Times(4);
-  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _));
   EXPECT_CALL(table, drawLineS(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
@@ -476,7 +476,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoCornerNW) {
 
   EXPECT_CALL(table, drawLineE(_, _)).Times(3);
   EXPECT_CALL(table, drawLineW(_, _)).Times(4);
-  EXPECT_CALL(table, drawArrowW(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawLineS(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(3);
