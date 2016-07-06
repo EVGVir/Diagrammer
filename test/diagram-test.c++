@@ -35,7 +35,7 @@ TEST_F(DiagramTest, shouldGetDimensions) {
 TEST_F(DiagramTest, shouldInitWithValues) {
   Diagram d{ss};
 
-  auto value = DiagramElement{0, ElementClasses{}};
+  DiagramElement value;
 
   value.c = 'a'; EXPECT_THAT(d[0][0], DiagramElementEq(value));
   value.c = 'b'; EXPECT_THAT(d[1][0], DiagramElementEq(value));

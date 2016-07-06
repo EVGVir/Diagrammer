@@ -31,6 +31,12 @@ struct DiagramElement {
   char           c;            ///< A character.
   ElementClasses classes;      ///< Classes assigned to the character.
 
+  /// Creates a diagram element.
+  ///
+  /// @param a_c Character, this element represents.
+  /// @param a_classes Classes assigned to the character.
+  DiagramElement(char a_c = ' ', ElementClasses &&a_classes = {});
+
   /// @return Whether a class is assigned to this element.
   ///
   /// @param c Class to be checked.

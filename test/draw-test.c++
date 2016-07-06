@@ -21,7 +21,7 @@ struct DrawElementTest: public Test {
 
 
 TEST_F(DrawElementTest, shouldDrawCharacterIfNoClasses) {
-  DiagramElement e = {'e', {}};
+  DiagramElement e{'e'};
 
   EXPECT_CALL(table, drawCharacter(x, y, e.c));
   drawElement(e, table, x, y);
@@ -29,7 +29,7 @@ TEST_F(DrawElementTest, shouldDrawCharacterIfNoClasses) {
 
 
 TEST_F(DrawElementTest, shouldDrawLineN) {
-  DiagramElement e = {'e', {ElementClass::LineN}};
+  DiagramElement e{'e', {ElementClass::LineN}};
 
   EXPECT_CALL(table, drawLineN(x, y));
   drawElement(e, table, x, y);
@@ -37,7 +37,7 @@ TEST_F(DrawElementTest, shouldDrawLineN) {
 
 
 TEST_F(DrawElementTest, shouldDrawLineS) {
-  DiagramElement e = {'e', {ElementClass::LineS}};
+  DiagramElement e{'e', {ElementClass::LineS}};
 
   EXPECT_CALL(table, drawLineS(x, y));
   drawElement(e, table, x, y);
@@ -45,7 +45,7 @@ TEST_F(DrawElementTest, shouldDrawLineS) {
 
 
 TEST_F(DrawElementTest, shouldDrawLineE) {
-  DiagramElement e = {'e', {ElementClass::LineE}};
+  DiagramElement e{'e', {ElementClass::LineE}};
 
   EXPECT_CALL(table, drawLineE(x, y));
   drawElement(e, table, x, y);
@@ -53,7 +53,7 @@ TEST_F(DrawElementTest, shouldDrawLineE) {
 
 
 TEST_F(DrawElementTest, shouldDrawLineW) {
-  DiagramElement e = {'e', {ElementClass::LineW}};
+  DiagramElement e{'e', {ElementClass::LineW}};
 
   EXPECT_CALL(table, drawLineW(x, y));
   drawElement(e, table, x, y);
@@ -61,7 +61,7 @@ TEST_F(DrawElementTest, shouldDrawLineW) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowNtoCenter) {
-  DiagramElement e = {' ', {ElementClass::ArrowN}};
+  DiagramElement e{' ', {ElementClass::ArrowN}};
 
   EXPECT_CALL(table, drawArrowNtoCenter(x, y));
   drawElement(e, table, x, y);
@@ -69,7 +69,7 @@ TEST_F(DrawElementTest, shouldDrawArrowNtoCenter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowStoCenter) {
-  DiagramElement e = {' ', {ElementClass::ArrowS}};
+  DiagramElement e{' ', {ElementClass::ArrowS}};
 
   EXPECT_CALL(table, drawArrowStoCenter(x, y));
   drawElement(e, table, x, y);
@@ -77,7 +77,7 @@ TEST_F(DrawElementTest, shouldDrawArrowStoCenter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowEtoCenter) {
-  DiagramElement e = {' ', {ElementClass::ArrowE}};
+  DiagramElement e{' ', {ElementClass::ArrowE}};
 
   EXPECT_CALL(table, drawArrowEtoCenter(x, y));
   drawElement(e, table, x, y);
@@ -85,7 +85,7 @@ TEST_F(DrawElementTest, shouldDrawArrowEtoCenter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowWtoCenter) {
-  DiagramElement e = {' ', {ElementClass::ArrowW}};
+  DiagramElement e{' ', {ElementClass::ArrowW}};
 
   EXPECT_CALL(table, drawArrowWtoCenter(x, y));
   drawElement(e, table, x, y);
@@ -93,7 +93,7 @@ TEST_F(DrawElementTest, shouldDrawArrowWtoCenter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowNtoCharacter) {
-  DiagramElement e = {'e', {ElementClass::ArrowN}};
+  DiagramElement e{'e', {ElementClass::ArrowN}};
 
   EXPECT_CALL(table, drawCharacter(x, y, e.c));
   EXPECT_CALL(table, drawArrowNtoEdge(x, y));
@@ -102,7 +102,7 @@ TEST_F(DrawElementTest, shouldDrawArrowNtoCharacter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowStoCharacter) {
-  DiagramElement e = {'e', {ElementClass::ArrowS}};
+  DiagramElement e{'e', {ElementClass::ArrowS}};
 
   EXPECT_CALL(table, drawCharacter(x, y, e.c));
   EXPECT_CALL(table, drawArrowStoEdge(x, y));
@@ -111,7 +111,7 @@ TEST_F(DrawElementTest, shouldDrawArrowStoCharacter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowEtoCharacter) {
-  DiagramElement e = {'e', {ElementClass::ArrowE}};
+  DiagramElement e{'e', {ElementClass::ArrowE}};
 
   EXPECT_CALL(table, drawCharacter(x, y, e.c));
   EXPECT_CALL(table, drawArrowEtoEdge(x, y));
@@ -120,7 +120,7 @@ TEST_F(DrawElementTest, shouldDrawArrowEtoCharacter) {
 
 
 TEST_F(DrawElementTest, shouldDrawArrowWtoCharacter) {
-  DiagramElement e = {'e', {ElementClass::ArrowW}};
+  DiagramElement e{'e', {ElementClass::ArrowW}};
 
   EXPECT_CALL(table, drawCharacter(x, y, e.c));
   EXPECT_CALL(table, drawArrowWtoEdge(x, y));

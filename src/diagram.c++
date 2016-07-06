@@ -10,6 +10,12 @@ using std::pair;
 using std::string;
 
 
+DiagramElement::DiagramElement(char a_c, ElementClasses &&a_classes):
+  c{a_c},
+  classes{a_classes}
+{}
+
+
 bool DiagramElement::hasClass(ElementClass c) const {
   return classes.find(c) != classes.end();
 }
@@ -36,10 +42,7 @@ Diagram::Diagram(istream &input):
   for (size_t y{0}; y < height(); ++y) {
     getline(input, line);
     for (size_t x{0}; x < line.size(); ++x) {
-      mMatrix[x][y] = DiagramElement {
-        line[x],
-        ElementClasses{}
-      };
+      mMatrix[x][y] = DiagramElement{line[x]};
     }
   }
 }
