@@ -12,6 +12,10 @@ public:
   MOCK_METHOD2(drawSolidLineS, void(size_t x, size_t y));
   MOCK_METHOD2(drawSolidLineE, void(size_t x, size_t y));
   MOCK_METHOD2(drawSolidLineW, void(size_t x, size_t y));
+  MOCK_METHOD2(drawDashedLineN, void(size_t x, size_t y));
+  MOCK_METHOD2(drawDashedLineS, void(size_t x, size_t y));
+  MOCK_METHOD2(drawDashedLineE, void(size_t x, size_t y));
+  MOCK_METHOD2(drawDashedLineW, void(size_t x, size_t y));
   MOCK_METHOD2(drawArrowNtoCenter, void(size_t x, size_t y));
   MOCK_METHOD2(drawArrowStoCenter, void(size_t x, size_t y));
   MOCK_METHOD2(drawArrowEtoCenter, void(size_t x, size_t y));

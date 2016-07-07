@@ -54,6 +54,30 @@ public:
   /// @param y Element to be drawn vertical position.
   virtual void drawSolidLineW(size_t x, size_t y);
 
+  /// Draws a dashed line from the element's center to the North.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawDashedLineN(size_t x, size_t y);
+
+  /// Draws a dashed line from the element's center to the South.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawDashedLineS(size_t x, size_t y);
+
+  /// Draws a dashed line from the element's center to the East.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawDashedLineE(size_t x, size_t y);
+
+  /// Draws a dashed line from the element's center to the West.
+  ///
+  /// @param x Element to be drawn horizontal position.
+  /// @param y Element to be drawn vertical position.
+  virtual void drawDashedLineW(size_t x, size_t y);
+
   /// Draws an arrow to the element's center from the South.
   ///
   /// @param x Element to be drawn horizontal position.

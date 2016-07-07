@@ -32,6 +32,22 @@ void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t
     table.drawSolidLineW(x, y);
   }
 
+  if (e.hasClass(ElementClass::DashedLineN)) {
+    table.drawDashedLineN(x, y);
+  }
+
+  if (e.hasClass(ElementClass::DashedLineS)) {
+    table.drawDashedLineS(x, y);
+  }
+
+  if (e.hasClass(ElementClass::DashedLineE)) {
+    table.drawDashedLineE(x, y);
+  }
+
+  if (e.hasClass(ElementClass::DashedLineW)) {
+    table.drawDashedLineW(x, y);
+  }
+
   if (e.hasClass(ElementClass::ArrowN)) {
     if (!e.isCharacter()) {
       table.drawArrowNtoCenter(x, y);

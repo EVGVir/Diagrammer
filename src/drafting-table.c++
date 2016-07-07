@@ -4,6 +4,7 @@
 #include <algorithm>
 
 using std::max;
+using std::min;
 
 
 static const double PI = 3.141592653589793238462643383279502884197169399375105820974;
@@ -79,6 +80,38 @@ void DraftingTable::drawSolidLineW(size_t x, size_t y) {
 }
 
 
+void DraftingTable::drawDashedLineN(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  drawLine(x + mElementWidth / 2, y,
+           x + mElementWidth / 2, y + mElementHeight / 2,
+           LineStyle::Dashed);
+}
+
+
+void DraftingTable::drawDashedLineS(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x + mElementWidth / 2, y + mElementHeight,
+           LineStyle::Dashed);
+}
+
+
+void DraftingTable::drawDashedLineE(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x + mElementWidth,     y + mElementHeight / 2,
+           LineStyle::Dashed);
+}
+
+
+void DraftingTable::drawDashedLineW(size_t x, size_t y) {
+  convertCharPosToImageCoordiantes(x, y);
+  drawLine(x,                     y + mElementHeight / 2,
+           x + mElementWidth / 2, y + mElementHeight / 2,
+           LineStyle::Dashed);
+}
+
+
 void DraftingTable::drawArrowNtoCenter(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   drawArrow(x + 0.5 * mElementWidth, y + 0.5 * mElementHeight, 0);
@@ -131,6 +164,12 @@ void DraftingTable::drawLine(double from_x, double from_y, double to_x, double t
   ContextGuard guard{mContext};
   cairo_move_to(mContext, from_x, from_y);
   cairo_line_to(mContext, to_x,   to_y);
+
+  if (style == LineStyle::Dashed) {
+    double dashes[] = {double(min(mElementWidth, mElementHeight)) / 2};
+    cairo_set_dash(mContext, dashes, sizeof(dashes) / sizeof(double), from_x + from_y);
+  }
+
   cairo_stroke(mContext);
 }
 

@@ -19,6 +19,20 @@ const Pattern Vertical_Solid_Line{{
 }};
 
 
+/// . .
+const Pattern Horizontal_Dashed_Line{{
+  {{'.', {C::DashedLineE}}, {' ', {C::DashedLineW, C::DashedLineE}}, {'.', {C::DashedLineW}}}
+}};
+
+
+/// .
+/// .
+const Pattern Vertical_Dashed_Line{{
+  {{'.', {C::DashedLineS}}},
+  {{'.', {C::DashedLineN}}}
+}};
+
+
 /// |
 /// +-
 const Pattern Solid_Corner_NE{{
@@ -84,6 +98,9 @@ const Pattern Solid_Arrow_W{{
 void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Horizontal_Solid_Line);
   diagram.applyPattern(Vertical_Solid_Line);
+
+  diagram.applyPattern(Horizontal_Dashed_Line);
+  diagram.applyPattern(Vertical_Dashed_Line);
 
   diagram.applyPattern(Solid_Corner_NE);
   diagram.applyPattern(Solid_Corner_SE);

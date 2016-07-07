@@ -23,10 +23,10 @@ bool DiagramElement::hasClass(ElementClass c) const {
 
 bool DiagramElement::isCharacter() const {
   return
-    !hasClass(ElementClass::SolidLineN) and
-    !hasClass(ElementClass::SolidLineS) and
-    !hasClass(ElementClass::SolidLineE) and
-    !hasClass(ElementClass::SolidLineW) and
+    !hasClass(ElementClass::SolidLineN) and !hasClass(ElementClass::DashedLineN) and
+    !hasClass(ElementClass::SolidLineS) and !hasClass(ElementClass::DashedLineS) and
+    !hasClass(ElementClass::SolidLineE) and !hasClass(ElementClass::DashedLineE) and
+    !hasClass(ElementClass::SolidLineW) and !hasClass(ElementClass::DashedLineW) and
     c != ' ';
 }
 
