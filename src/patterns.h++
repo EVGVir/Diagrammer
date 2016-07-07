@@ -5,14 +5,18 @@
 
 namespace Patterns {
   namespace Lines {
-    extern const Pattern Horizontal;
-    extern const Pattern Vertical;
+    namespace Solid {
+      extern const Pattern Horizontal;
+      extern const Pattern Vertical;
+    }
   }
   namespace Corners {
-    extern const Pattern NE;
-    extern const Pattern SE;
-    extern const Pattern SW;
-    extern const Pattern NW;
+    namespace Solid {
+      extern const Pattern NE;
+      extern const Pattern SE;
+      extern const Pattern SW;
+      extern const Pattern NW;
+    }
   }
   namespace Arrows {
     extern const Pattern N;

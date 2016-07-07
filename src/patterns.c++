@@ -7,48 +7,52 @@ namespace Patterns {
 
 
   namespace Lines {
-    /// --
-    const Pattern Horizontal{{
-      {{'-', {C::SolidLineW, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
-    }};
+    namespace Solid {
+      /// --
+      const Pattern Horizontal{{
+        {{'-', {C::SolidLineW, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
+      }};
 
-    /// |
-    /// |
-    const Pattern Vertical{{
-      {{'|', {C::SolidLineS, C::SolidLineN}}},
-      {{'|', {C::SolidLineS, C::SolidLineN}}}
-    }};
+      /// |
+      /// |
+      const Pattern Vertical{{
+        {{'|', {C::SolidLineS, C::SolidLineN}}},
+        {{'|', {C::SolidLineS, C::SolidLineN}}}
+      }};
+    }
   }
 
 
   namespace Corners {
-    /// |
-    /// +-
-    const Pattern NE{{
-      {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}},
-      {{'+', {C::SolidLineN, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
-    }};
+    namespace Solid {
+      /// |
+      /// +-
+      const Pattern NE{{
+        {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}},
+        {{'+', {C::SolidLineN, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
+      }};
 
-    /// +-
-    /// |
-    const Pattern SE{{
-      {{'+', {C::SolidLineS, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}},
-      {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}}
-    }};
+      /// +-
+      /// |
+      const Pattern SE{{
+        {{'+', {C::SolidLineS, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}},
+        {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}}
+      }};
 
-    /// -+
-    ///  |
-    const Pattern SW{{
-      {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineS, C::SolidLineW}}},
-      {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}}
-    }};
+      /// -+
+      ///  |
+      const Pattern SW{{
+        {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineS, C::SolidLineW}}},
+        {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}}
+      }};
 
-    ///  |
-    /// -+
-    const Pattern NW{{
-      {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}},
-      {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineN, C::SolidLineW}}}
-    }};
+      ///  |
+      /// -+
+      const Pattern NW{{
+        {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}},
+        {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineN, C::SolidLineW}}}
+      }};
+    }
   }
 
 
@@ -82,12 +86,12 @@ namespace Patterns {
 
 
   void applyAll(Diagram &diagram) {
-    diagram.applyPattern(Lines::Horizontal);
-    diagram.applyPattern(Lines::Vertical);
-    diagram.applyPattern(Corners::NE);
-    diagram.applyPattern(Corners::SE);
-    diagram.applyPattern(Corners::SW);
-    diagram.applyPattern(Corners::NW);
+    diagram.applyPattern(Lines::Solid::Horizontal);
+    diagram.applyPattern(Lines::Solid::Vertical);
+    diagram.applyPattern(Corners::Solid::NE);
+    diagram.applyPattern(Corners::Solid::SE);
+    diagram.applyPattern(Corners::Solid::SW);
+    diagram.applyPattern(Corners::Solid::NW);
     diagram.applyPattern(Arrows::N);
     diagram.applyPattern(Arrows::S);
     diagram.applyPattern(Arrows::E);

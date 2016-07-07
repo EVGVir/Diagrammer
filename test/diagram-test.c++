@@ -51,8 +51,8 @@ TEST_F(DiagramTest, shouldCheckPattern) {
          "--+ \n");
   Diagram d{ss};
 
-  EXPECT_THAT(d.checkPattern(0, 1, Patterns::Lines::Horizontal), true);
-  EXPECT_THAT(d.checkPattern(1, 0, Patterns::Corners::NW), true);
+  EXPECT_THAT(d.checkPattern(0, 1, Patterns::Lines::Solid::Horizontal), true);
+  EXPECT_THAT(d.checkPattern(1, 0, Patterns::Corners::Solid::NW), true);
 }
 
 
@@ -61,8 +61,8 @@ TEST_F(DiagramTest, shouldNotCheckPattern) {
          "--+ \n");
   Diagram d{ss};
 
-  EXPECT_THAT(d.checkPattern(0, 0, Patterns::Lines::Horizontal), false);
-  EXPECT_THAT(d.checkPattern(2, 0, Patterns::Corners::NW), false);
+  EXPECT_THAT(d.checkPattern(0, 0, Patterns::Lines::Solid::Horizontal), false);
+  EXPECT_THAT(d.checkPattern(2, 0, Patterns::Corners::Solid::NW), false);
 }
 
 
@@ -72,11 +72,11 @@ TEST_F(DiagramTest, shouldApplyPatternAtPos) {
          "+--\n");
   Diagram d{ss};
 
-  d.applyPatternAtPos(0, 0, Patterns::Lines::Vertical);
+  d.applyPatternAtPos(0, 0, Patterns::Lines::Solid::Vertical);
   EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
   EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
 
-  d.applyPatternAtPos(0, 1, Patterns::Corners::NE);
+  d.applyPatternAtPos(0, 1, Patterns::Corners::Solid::NE);
   EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
   EXPECT_THAT(d[1][1].classes, ElementsAre());
   EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::SolidLineN, EC::SolidLineE));
@@ -94,7 +94,7 @@ TEST_F(DiagramTest, shouldApplyPattern) {
          "--  \n");
   Diagram d{ss};
 
-  d.applyPattern(Patterns::Lines::Horizontal);
+  d.applyPattern(Patterns::Lines::Solid::Horizontal);
   EXPECT_THAT(d[0][0].classes, UnorderedElementsAre());
   EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
   EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
@@ -112,7 +112,7 @@ TEST_F(DiagramTest, shouldNotApplyPattern) {
          "+- \n");
   Diagram d{ss};
 
-  d.applyPattern(Patterns::Corners::NW);
+  d.applyPattern(Patterns::Corners::Solid::NW);
   for (size_t x = 0; x < d.width(); ++x) {
     for (size_t y = 0; y < d.height(); ++y) {
       EXPECT_THAT(d[x][y].classes, UnorderedElementsAre());
