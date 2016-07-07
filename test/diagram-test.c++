@@ -73,14 +73,14 @@ TEST_F(DiagramTest, shouldApplyPatternAtPos) {
   Diagram d{ss};
 
   d.applyPatternAtPos(0, 0, Patterns::Lines::Vertical);
-  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
+  EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
 
   d.applyPatternAtPos(0, 1, Patterns::Corners::NE);
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineS, EC::LineN));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
   EXPECT_THAT(d[1][1].classes, ElementsAre());
-  EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::LineN, EC::LineE));
-  EXPECT_THAT(d[1][2].classes, UnorderedElementsAre(EC::LineW, EC::LineE));
+  EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::SolidLineN, EC::SolidLineE));
+  EXPECT_THAT(d[1][2].classes, UnorderedElementsAre(EC::SolidLineW, EC::SolidLineE));
 
   EXPECT_THAT(d[1][0].classes, ElementsAre());
   EXPECT_THAT(d[2][0].classes, ElementsAre());
@@ -96,11 +96,11 @@ TEST_F(DiagramTest, shouldApplyPattern) {
 
   d.applyPattern(Patterns::Lines::Horizontal);
   EXPECT_THAT(d[0][0].classes, UnorderedElementsAre());
-  EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
-  EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
+  EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
   EXPECT_THAT(d[3][0].classes, UnorderedElementsAre());
-  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
-  EXPECT_THAT(d[1][1].classes, UnorderedElementsAre(EC::LineE, EC::LineW));
+  EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
+  EXPECT_THAT(d[1][1].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
   EXPECT_THAT(d[2][1].classes, UnorderedElementsAre());
   EXPECT_THAT(d[3][1].classes, UnorderedElementsAre());
 }

@@ -11,10 +11,10 @@
 /// An element can belong to several classes.
 /// @see ElementClasses
 enum class ElementClass {
-  LineN,                     ///< A line from the center to the North.
-  LineW,                     ///< A line from the center to the West.
-  LineS,                     ///< A line from the center to the South.
-  LineE,                     ///< A line from the center to the East.
+  SolidLineN,                ///< A solid line from the center to the North.
+  SolidLineW,                ///< A solid line from the center to the West.
+  SolidLineS,                ///< A solid line from the center to the South.
+  SolidLineE,                ///< A solid line from the center to the East.
   ArrowN,                    ///< An arrow from the South to the center.
   ArrowS,                    ///< An arrow from the North to the center.
   ArrowE,                    ///< An arrow from the West to the center.

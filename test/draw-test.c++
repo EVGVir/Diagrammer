@@ -29,7 +29,7 @@ TEST_F(DrawElementTest, shouldDrawCharacterIfNoClasses) {
 
 
 TEST_F(DrawElementTest, shouldDrawSolidLineN) {
-  DiagramElement e{'e', {ElementClass::LineN}};
+  DiagramElement e{'e', {ElementClass::SolidLineN}};
 
   EXPECT_CALL(table, drawSolidLineN(x, y));
   drawElement(e, table, x, y);
@@ -37,7 +37,7 @@ TEST_F(DrawElementTest, shouldDrawSolidLineN) {
 
 
 TEST_F(DrawElementTest, shouldDrawSolidLineS) {
-  DiagramElement e{'e', {ElementClass::LineS}};
+  DiagramElement e{'e', {ElementClass::SolidLineS}};
 
   EXPECT_CALL(table, drawSolidLineS(x, y));
   drawElement(e, table, x, y);
@@ -45,7 +45,7 @@ TEST_F(DrawElementTest, shouldDrawSolidLineS) {
 
 
 TEST_F(DrawElementTest, shouldDrawSolidLineE) {
-  DiagramElement e{'e', {ElementClass::LineE}};
+  DiagramElement e{'e', {ElementClass::SolidLineE}};
 
   EXPECT_CALL(table, drawSolidLineE(x, y));
   drawElement(e, table, x, y);
@@ -53,7 +53,7 @@ TEST_F(DrawElementTest, shouldDrawSolidLineE) {
 
 
 TEST_F(DrawElementTest, shouldDrawSolidLineW) {
-  DiagramElement e{'e', {ElementClass::LineW}};
+  DiagramElement e{'e', {ElementClass::SolidLineW}};
 
   EXPECT_CALL(table, drawSolidLineW(x, y));
   drawElement(e, table, x, y);

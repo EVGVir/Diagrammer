@@ -9,14 +9,14 @@ namespace Patterns {
   namespace Lines {
     /// --
     const Pattern Horizontal{{
-      {{'-', {C::LineW, C::LineE}}, {'-', {C::LineW, C::LineE}}}
+      {{'-', {C::SolidLineW, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
     }};
 
     /// |
     /// |
     const Pattern Vertical{{
-      {{'|', {C::LineS, C::LineN}}},
-      {{'|', {C::LineS, C::LineN}}}
+      {{'|', {C::SolidLineS, C::SolidLineN}}},
+      {{'|', {C::SolidLineS, C::SolidLineN}}}
     }};
   }
 
@@ -25,29 +25,29 @@ namespace Patterns {
     /// |
     /// +-
     const Pattern NE{{
-      {{'|', {C::LineS, C::LineN}}, { 0 , {}}},
-      {{'+', {C::LineN, C::LineE}}, {'-', {C::LineW, C::LineE}}}
+      {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}},
+      {{'+', {C::SolidLineN, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}}
     }};
 
     /// +-
     /// |
     const Pattern SE{{
-      {{'+', {C::LineS, C::LineE}}, {'-', {C::LineW, C::LineE}}},
-      {{'|', {C::LineS, C::LineN}}, { 0 , {}}}
+      {{'+', {C::SolidLineS, C::SolidLineE}}, {'-', {C::SolidLineW, C::SolidLineE}}},
+      {{'|', {C::SolidLineS, C::SolidLineN}}, { 0 , {}}}
     }};
 
     /// -+
     ///  |
     const Pattern SW{{
-      {{'-', {C::LineW, C::LineE}}, {'+', {C::LineS, C::LineW}}},
-      {{ 0 , {}},                   {'|', {C::LineS, C::LineN}}}
+      {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineS, C::SolidLineW}}},
+      {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}}
     }};
 
     ///  |
     /// -+
     const Pattern NW{{
-      {{ 0 , {}},                   {'|', {C::LineS, C::LineN}}},
-      {{'-', {C::LineW, C::LineE}}, {'+', {C::LineN, C::LineW}}}
+      {{ 0 , {}},                             {'|', {C::SolidLineS, C::SolidLineN}}},
+      {{'-', {C::SolidLineW, C::SolidLineE}}, {'+', {C::SolidLineN, C::SolidLineW}}}
     }};
   }
 
@@ -57,26 +57,26 @@ namespace Patterns {
     /// |
     const Pattern N{{
       {{ 0 , {C::ArrowN}}},
-      {{'^', {C::LineS, C::LineN}}},
-      {{'|', {C::LineS, C::LineN}}}
+      {{'^', {C::SolidLineS, C::SolidLineN}}},
+      {{'|', {C::SolidLineS, C::SolidLineN}}}
     }};
 
     /// |
     /// v
     const Pattern S{{
-      {{'|', {C::LineN, C::LineS}}},
-      {{'v', {C::LineN, C::LineS}}},
+      {{'|', {C::SolidLineN, C::SolidLineS}}},
+      {{'v', {C::SolidLineN, C::SolidLineS}}},
       {{ 0 , {C::ArrowS}}}
     }};
 
     /// ->
     const Pattern E{{
-      {{'-', {C::LineW, C::LineE}}, {'>', {C::LineW, C::LineE}},  { 0 , {C::ArrowE}}}
+      {{'-', {C::SolidLineW, C::SolidLineE}}, {'>', {C::SolidLineW, C::SolidLineE}},  { 0 , {C::ArrowE}}}
     }};
 
     /// <-
     const Pattern W{{
-      {{ 0 , {C::ArrowW}}, {'<', {C::LineE, C::LineW}}, {'-', {C::LineE, C::LineW}}}
+      {{ 0 , {C::ArrowW}}, {'<', {C::SolidLineE, C::SolidLineW}}, {'-', {C::SolidLineE, C::SolidLineW}}}
     }};
   }
 
