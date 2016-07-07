@@ -17,19 +17,19 @@ void drawElement(const DiagramElement &e, DraftingTable &table, size_t x, size_t
   }
 
   if (e.hasClass(ElementClass::LineN)) {
-    table.drawLineN(x, y);
+    table.drawSolidLineN(x, y);
   }
 
   if (e.hasClass(ElementClass::LineS)) {
-    table.drawLineS(x, y);
+    table.drawSolidLineS(x, y);
   }
 
   if (e.hasClass(ElementClass::LineE)) {
-    table.drawLineE(x, y);
+    table.drawSolidLineE(x, y);
   }
 
   if (e.hasClass(ElementClass::LineW)) {
-    table.drawLineW(x, y);
+    table.drawSolidLineW(x, y);
   }
 
   if (e.hasClass(ElementClass::ArrowN)) {

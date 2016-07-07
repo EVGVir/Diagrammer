@@ -28,34 +28,34 @@ TEST_F(DrawElementTest, shouldDrawCharacterIfNoClasses) {
 }
 
 
-TEST_F(DrawElementTest, shouldDrawLineN) {
+TEST_F(DrawElementTest, shouldDrawSolidLineN) {
   DiagramElement e{'e', {ElementClass::LineN}};
 
-  EXPECT_CALL(table, drawLineN(x, y));
+  EXPECT_CALL(table, drawSolidLineN(x, y));
   drawElement(e, table, x, y);
 }
 
 
-TEST_F(DrawElementTest, shouldDrawLineS) {
+TEST_F(DrawElementTest, shouldDrawSolidLineS) {
   DiagramElement e{'e', {ElementClass::LineS}};
 
-  EXPECT_CALL(table, drawLineS(x, y));
+  EXPECT_CALL(table, drawSolidLineS(x, y));
   drawElement(e, table, x, y);
 }
 
 
-TEST_F(DrawElementTest, shouldDrawLineE) {
+TEST_F(DrawElementTest, shouldDrawSolidLineE) {
   DiagramElement e{'e', {ElementClass::LineE}};
 
-  EXPECT_CALL(table, drawLineE(x, y));
+  EXPECT_CALL(table, drawSolidLineE(x, y));
   drawElement(e, table, x, y);
 }
 
 
-TEST_F(DrawElementTest, shouldDrawLineW) {
+TEST_F(DrawElementTest, shouldDrawSolidLineW) {
   DiagramElement e{'e', {ElementClass::LineW}};
 
-  EXPECT_CALL(table, drawLineW(x, y));
+  EXPECT_CALL(table, drawSolidLineW(x, y));
   drawElement(e, table, x, y);
 }
 

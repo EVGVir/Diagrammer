@@ -30,29 +30,29 @@ public:
   /// @param c Character to be drawn.
   virtual void drawCharacter(size_t x, size_t y, char c);
 
-  /// Draws a line from the element's center to the North.
+  /// Draws a solid line from the element's center to the North.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  virtual void drawLineN(size_t x, size_t y);
+  virtual void drawSolidLineN(size_t x, size_t y);
 
-  /// Draws a line from the element's center to the South.
+  /// Draws a solid line from the element's center to the South.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  virtual void drawLineS(size_t x, size_t y);
+  virtual void drawSolidLineS(size_t x, size_t y);
 
-  /// Draws a line from the element's center to the East.
+  /// Draws a solid line from the element's center to the East.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  virtual void drawLineE(size_t x, size_t y);
+  virtual void drawSolidLineE(size_t x, size_t y);
 
-  /// Draws a line from the element's center to the West.
+  /// Draws a solid line from the element's center to the West.
   ///
   /// @param x Element to be drawn horizontal position.
   /// @param y Element to be drawn vertical position.
-  virtual void drawLineW(size_t x, size_t y);
+  virtual void drawSolidLineW(size_t x, size_t y);
 
   /// Draws an arrow to the element's center from the South.
   ///

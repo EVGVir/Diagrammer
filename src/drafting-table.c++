@@ -45,7 +45,7 @@ void DraftingTable::drawCharacter(size_t x, size_t y, char c) {
 }
 
 
-void DraftingTable::drawLineN(size_t x, size_t y) {
+void DraftingTable::drawSolidLineN(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth / 2, y);
@@ -53,7 +53,7 @@ void DraftingTable::drawLineN(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawLineS(size_t x, size_t y) {
+void DraftingTable::drawSolidLineS(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth / 2, y + mElementHeight);
@@ -61,7 +61,7 @@ void DraftingTable::drawLineS(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawLineE(size_t x, size_t y) {
+void DraftingTable::drawSolidLineE(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth,     y + mElementHeight / 2);
@@ -69,7 +69,7 @@ void DraftingTable::drawLineE(size_t x, size_t y) {
 }
 
 
-void DraftingTable::drawLineW(size_t x, size_t y) {
+void DraftingTable::drawSolidLineW(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x,                     y + mElementHeight / 2);
