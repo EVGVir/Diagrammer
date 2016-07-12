@@ -84,77 +84,59 @@ void DraftingTable::drawSolidLineW(size_t x, size_t y) {
 
 
 void DraftingTable::drawArrowNtoCenter(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y + 0.5 * mElementHeight, 0);
 }
 
 
 void DraftingTable::drawArrowStoCenter(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
-  cairo_rotate(mContext, PI);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y + 0.5 * mElementHeight, PI);
 }
 
 
 void DraftingTable::drawArrowEtoCenter(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
-  cairo_rotate(mContext, 0.5 * PI);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y + 0.5 * mElementHeight, -0.5 * PI);
 }
 
 
 void DraftingTable::drawArrowWtoCenter(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
-  cairo_rotate(mContext, -0.5 * PI);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y + 0.5 * mElementHeight, 0.5 * PI);
 }
 
 
 void DraftingTable::drawArrowNtoEdge(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y + mElementHeight);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y + mElementHeight, 0);
 }
 
 
 void DraftingTable::drawArrowStoEdge(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + 0.5 * mElementWidth, y);
-  cairo_rotate(mContext, PI);
-  drawArrow();
+  drawArrow(x + 0.5 * mElementWidth, y, PI);
 }
 
 
 void DraftingTable::drawArrowEtoEdge(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x, y + 0.5 * mElementHeight);
-  cairo_rotate(mContext, 0.5 * PI);
-  drawArrow();
+  drawArrow(x, y + 0.5 * mElementHeight, -0.5 * PI);
 }
 
 
 void DraftingTable::drawArrowWtoEdge(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_translate(mContext, x + mElementWidth, y + 0.5 * mElementHeight);
-  cairo_rotate(mContext, -0.5 * PI);
-  drawArrow();
+  drawArrow(x + mElementWidth, y + 0.5 * mElementHeight, 0.5 * PI);
 }
 
 
-void DraftingTable::drawArrow() {
+void DraftingTable::drawArrow(double x, double y, double angle) {
   ContextGuard guard{mContext};
+
+  cairo_translate(mContext, x, y);
+  cairo_rotate(mContext, -angle);
+
   cairo_move_to(mContext,               0.0,           0.0);
   cairo_line_to(mContext, 0.5 * mArrowWidth,  mArrowLength);
   cairo_curve_to(mContext,

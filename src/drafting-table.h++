@@ -115,9 +115,14 @@ private:
   cairo_surface_t *mSurface;       ///< Cairo's easel where diagram is drawn.
   cairo_t         *mContext;       ///< Cairo's context.
 
-  /// Draws an arrow that points to the coordiante origin from the
-  /// South.
-  void drawArrow();
+  /// Draws an arrow that points to the [x; y].
+  ///
+  /// @param x Horizontal coordinate, the arrow must point to.
+  /// @param y Vertical coordinate, the arrow must point to.
+  /// @param angle Angle (in radians), the arrow must be rotated by.
+  ///   0 - arrow points from South to North. The angle is increasing
+  ///   in counter clockwise direction.
+  void drawArrow(double x, double y, double angle);
 
   /// Converts a character position to Cairo units in place (replaces
   /// input parameters by result).
