@@ -1,4 +1,5 @@
 #include "drafting-table.h++"
+#include "context-guard.h++"
 
 #include <algorithm>
 
@@ -39,6 +40,7 @@ void DraftingTable::saveToPNG(const std::string &filename) const {
 
 
 void DraftingTable::drawCharacter(size_t x, size_t y, char c) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x, y + mElementHeight);
   cairo_show_text(mContext, std::string(1, c).c_str());
@@ -46,6 +48,7 @@ void DraftingTable::drawCharacter(size_t x, size_t y, char c) {
 
 
 void DraftingTable::drawSolidLineN(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth / 2, y);
@@ -54,6 +57,7 @@ void DraftingTable::drawSolidLineN(size_t x, size_t y) {
 
 
 void DraftingTable::drawSolidLineS(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth / 2, y + mElementHeight);
@@ -62,6 +66,7 @@ void DraftingTable::drawSolidLineS(size_t x, size_t y) {
 
 
 void DraftingTable::drawSolidLineE(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x + mElementWidth,     y + mElementHeight / 2);
@@ -70,6 +75,7 @@ void DraftingTable::drawSolidLineE(size_t x, size_t y) {
 
 
 void DraftingTable::drawSolidLineW(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
   cairo_line_to(mContext, x,                     y + mElementHeight / 2);
@@ -78,76 +84,77 @@ void DraftingTable::drawSolidLineW(size_t x, size_t y) {
 
 
 void DraftingTable::drawArrowNtoCenter(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowStoCenter(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowEtoCenter(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, 0.5 * PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowWtoCenter(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, -0.5 * PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowNtoEdge(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y + mElementHeight);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowStoEdge(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + 0.5 * mElementWidth, y);
   cairo_rotate(mContext, PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowEtoEdge(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, 0.5 * PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrowWtoEdge(size_t x, size_t y) {
+  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
   cairo_translate(mContext, x + mElementWidth, y + 0.5 * mElementHeight);
   cairo_rotate(mContext, -0.5 * PI);
   drawArrow();
-  cairo_identity_matrix(mContext);
 }
 
 
 void DraftingTable::drawArrow() {
+  ContextGuard guard{mContext};
   cairo_move_to(mContext,               0.0,           0.0);
   cairo_line_to(mContext, 0.5 * mArrowWidth,  mArrowLength);
   cairo_curve_to(mContext,
@@ -159,10 +166,9 @@ void DraftingTable::drawArrow() {
 
 
 void DraftingTable::drawMesh() {
+  ContextGuard guard{mContext};
   int width = cairo_image_surface_get_width(mSurface);
   int height = cairo_image_surface_get_height(mSurface);
-
-  cairo_save(mContext);
 
   for (int y = mElementHeight; y < height; y += mElementHeight) {
     cairo_move_to(mContext, 0, y);
@@ -177,8 +183,6 @@ void DraftingTable::drawMesh() {
   cairo_set_source_rgb(mContext, 0.6, 0.6, 0.6);
   cairo_set_line_width(mContext, 0.5);
   cairo_stroke(mContext);
-
-  cairo_restore(mContext);
 }
 
 
