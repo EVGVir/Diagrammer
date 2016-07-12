@@ -115,6 +115,14 @@ private:
   cairo_surface_t *mSurface;       ///< Cairo's easel where diagram is drawn.
   cairo_t         *mContext;       ///< Cairo's context.
 
+  /// Draws a line from [from_x; from_y] to [to_x; to_y].
+  ///
+  /// @param from_x Horizontal coordinate, the line must be drawn from.
+  /// @param from_y Vertical coordinate, the line must be drawn from.
+  /// @param to_x Horizontal coordinate, the line must be drawn to.
+  /// @param to_y Vertical coordinate, the line must be drawn to.
+  void drawLine(double from_x, double from_y, double to_x, double to_y);
+
   /// Draws an arrow that points to the [x; y].
   ///
   /// @param x Horizontal coordinate, the arrow must point to.

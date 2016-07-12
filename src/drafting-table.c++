@@ -48,38 +48,30 @@ void DraftingTable::drawCharacter(size_t x, size_t y, char c) {
 
 
 void DraftingTable::drawSolidLineN(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
-  cairo_line_to(mContext, x + mElementWidth / 2, y);
-  cairo_stroke(mContext);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x + mElementWidth / 2, y);
 }
 
 
 void DraftingTable::drawSolidLineS(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
-  cairo_line_to(mContext, x + mElementWidth / 2, y + mElementHeight);
-  cairo_stroke(mContext);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x + mElementWidth / 2, y + mElementHeight);
 }
 
 
 void DraftingTable::drawSolidLineE(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
-  cairo_line_to(mContext, x + mElementWidth,     y + mElementHeight / 2);
-  cairo_stroke(mContext);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x + mElementWidth,     y + mElementHeight / 2);
 }
 
 
 void DraftingTable::drawSolidLineW(size_t x, size_t y) {
-  ContextGuard guard{mContext};
   convertCharPosToImageCoordiantes(x, y);
-  cairo_move_to(mContext, x + mElementWidth / 2, y + mElementHeight / 2);
-  cairo_line_to(mContext, x,                     y + mElementHeight / 2);
-  cairo_stroke(mContext);
+  drawLine(x + mElementWidth / 2, y + mElementHeight / 2,
+           x,                     y + mElementHeight / 2);
 }
 
 
@@ -128,6 +120,14 @@ void DraftingTable::drawArrowEtoEdge(size_t x, size_t y) {
 void DraftingTable::drawArrowWtoEdge(size_t x, size_t y) {
   convertCharPosToImageCoordiantes(x, y);
   drawArrow(x + mElementWidth, y + 0.5 * mElementHeight, 0.5 * PI);
+}
+
+
+void DraftingTable::drawLine(double from_x, double from_y, double to_x, double to_y) {
+  ContextGuard guard{mContext};
+  cairo_move_to(mContext, from_x, from_y);
+  cairo_line_to(mContext, to_x,   to_y);
+  cairo_stroke(mContext);
 }
 
 
