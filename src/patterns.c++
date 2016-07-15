@@ -139,6 +139,50 @@ const Pattern Vertical_Dashed_Line_From_N_To_Horizontal_Solid_Line {{
 }};
 
 
+// . . +
+const Pattern Horizontal_Dashed_Line_From_W_To_Solid_Corner {{
+  {{'.', {}}, {' ', {}}, {'.', {C::DashedLineE}}, {' ', {C::DashedLineW, C::DashedLineE}}, {'+', {C::DashedLineW}}}
+}};
+
+
+// . .+
+const Pattern Horizontal_Dashed_Line_From_W_To_Solid_Corner_Without_Space {{
+  {{'.', {}}, {' ', {}}, {'.', {C::DashedLineE}}, {'+', {C::DashedLineW}}}
+}};
+
+
+// + . .
+const Pattern Horizontal_Dashed_Line_From_E_To_Solid_Corner {{
+  {{'+', {C::DashedLineE}}, {' ', {C::DashedLineW, C::DashedLineE}}, {'.', {C::DashedLineW}}, {' ', {}}, {'.', {}}}
+}};
+
+
+// +. .
+const Pattern Horizontal_Dashed_Line_From_E_To_Solid_Corner_Without_Space {{
+  {{'+', {C::DashedLineE}}, {'.', {C::DashedLineW}}, {' ', {}}, {'.', {}}}
+}};
+
+
+// +
+// .
+// .
+const Pattern Vertical_Dashed_Line_From_S_To_Solid_Corner {{
+  {{'+', {C::DashedLineS}}},
+  {{'.', {C::DashedLineN}}},
+  {{'.', {}}}
+}};
+
+
+// .
+// .
+// +
+const Pattern Vertical_Dashed_Line_From_N_To_Solid_Corner {{
+  {{'.', {}}},
+  {{'.', {C::DashedLineS}}},
+  {{'+', {C::DashedLineN}}}
+}};
+
+
 void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Horizontal_Solid_Line);
   diagram.applyPattern(Vertical_Solid_Line);
@@ -162,4 +206,11 @@ void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Horizontal_Dashed_Line_From_E_To_Vertical_Solid_Line_Without_Space);
   diagram.applyPattern(Vertical_Dashed_Line_From_S_To_Horizontal_Solid_Line);
   diagram.applyPattern(Vertical_Dashed_Line_From_N_To_Horizontal_Solid_Line);
+
+  diagram.applyPattern(Horizontal_Dashed_Line_From_W_To_Solid_Corner);
+  diagram.applyPattern(Horizontal_Dashed_Line_From_W_To_Solid_Corner_Without_Space);
+  diagram.applyPattern(Horizontal_Dashed_Line_From_E_To_Solid_Corner);
+  diagram.applyPattern(Horizontal_Dashed_Line_From_E_To_Solid_Corner_Without_Space);
+  diagram.applyPattern(Vertical_Dashed_Line_From_S_To_Solid_Corner);
+  diagram.applyPattern(Vertical_Dashed_Line_From_N_To_Solid_Corner);
 }
