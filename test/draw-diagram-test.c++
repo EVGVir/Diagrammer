@@ -50,6 +50,10 @@ using namespace std;
 /// ^   v
 /// |   a
 ///
+/// ---    .        |   |          |   |
+///  .     .    . . |   | . .   . .|   |. .
+///  .    ---       |   |          |   |
+///
 ///
 /// Other
 /// -----
@@ -645,5 +649,101 @@ TEST_F(DrawDiagramTest, shouldDrawSolidLinesCross) {
   EXPECT_CALL(table, drawSolidLineE(_, _)).Times(3);
   EXPECT_CALL(table, drawSolidLineW(_, _)).Times(3);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawVerticalDashedLineFromSToHorizontalSolidLine) {
+  ss.str("---\n"
+         " . \n"
+         " . ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawSolidLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawVerticalDashedLineFromNToHorizontalSolidLine) {
+  ss.str(" . \n"
+         " . \n"
+         "---");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawSolidLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawHorizontalDashedLineFromWToVerticalSolidLine) {
+  ss.str("    |\n"
+         ". . |\n"
+         "    |");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(8);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawHorizontalDashedLineFromEToVerticalSolidLine) {
+  ss.str("|    \n"
+         "| . .\n"
+         "|    ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(8);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawHorizontalDashedLineFromWToVerticalSolidLineWithoutSpace) {
+  ss.str("   |\n"
+         ". .|\n"
+         "   |");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(6);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawHorizontalDashedLineFromEToVerticalSolidLineWithoutSpace) {
+  ss.str("|   \n"
+         "|. .\n"
+         "|   ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(6);
   drawDiagram(d, table);
 }
