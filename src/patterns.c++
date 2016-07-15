@@ -183,6 +183,58 @@ const Pattern Vertical_Dashed_Line_From_N_To_Solid_Corner {{
 }};
 
 
+// --.
+const Pattern Horizontal_Solid_Line_From_W_To_Vertical_Dashed_Line {{
+  {{'-', {}}, {'-', {}}, {'.', {C::SolidLineW}}}
+}};
+
+
+// .--
+const Pattern Horizontal_Solid_Line_From_E_To_Vertical_Dashed_Line {{
+  {{'.', {C::SolidLineE}}, {'-', {}}, {'-', {}}}
+}};
+
+
+// .
+// |
+// |
+const Pattern Vertical_Solid_Line_From_S_To_Horizontal_Dashed_Line {{
+  {{'.', {C::SolidLineS}}},
+  {{'|', {}}},
+  {{'|', {}}}
+}};
+
+
+// . .
+//  |
+//  |
+const Pattern Vertical_Solid_Line_From_S_To_Horizontal_Dashed_Line_To_Space {{
+  {{'.', {}}, {' ', {C::SolidLineS}}, {'.', {}}},
+  {{ 0 , {}}, {'|', {}},              { 0 , {}}},
+  {{ 0 , {}}, {'|', {}},              { 0 , {}}}
+}};
+
+
+// |
+// |
+// .
+const Pattern Vertical_Solid_Line_From_N_To_Horizontal_Dashed_Line {{
+  {{'|', {}}},
+  {{'|', {}}},
+  {{'.', {C::SolidLineN}}}
+}};
+
+
+//  |
+//  |
+// . .
+const Pattern Vertical_Solid_Line_From_N_To_Horizontal_Dashed_Line_To_Space {{
+  {{ 0 , {}}, {'|', {}},              { 0 , {}}},
+  {{ 0 , {}}, {'|', {}},              { 0 , {}}},
+  {{'.', {}}, {' ', {C::SolidLineN}}, {'.', {}}}
+}};
+
+
 void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Horizontal_Solid_Line);
   diagram.applyPattern(Vertical_Solid_Line);
@@ -213,4 +265,11 @@ void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Horizontal_Dashed_Line_From_E_To_Solid_Corner_Without_Space);
   diagram.applyPattern(Vertical_Dashed_Line_From_S_To_Solid_Corner);
   diagram.applyPattern(Vertical_Dashed_Line_From_N_To_Solid_Corner);
+
+  diagram.applyPattern(Horizontal_Solid_Line_From_W_To_Vertical_Dashed_Line);
+  diagram.applyPattern(Horizontal_Solid_Line_From_E_To_Vertical_Dashed_Line);
+  diagram.applyPattern(Vertical_Solid_Line_From_S_To_Horizontal_Dashed_Line);
+  diagram.applyPattern(Vertical_Solid_Line_From_S_To_Horizontal_Dashed_Line_To_Space);
+  diagram.applyPattern(Vertical_Solid_Line_From_N_To_Horizontal_Dashed_Line);
+  diagram.applyPattern(Vertical_Solid_Line_From_N_To_Horizontal_Dashed_Line_To_Space);
 }
