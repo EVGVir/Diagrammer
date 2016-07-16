@@ -16,7 +16,7 @@
 /// @param filename File, the diagram to be saved to.
 /// @param fontsize Font size that is used for rasterization.
 void diagram2png(Diagram &d, const std::string &filename, double fontsize) {
-  Patterns::applyAll(d);
+  applyAllPatterns(d);
   auto table = DraftingTable{d.width(), d.height(), fontsize};
   table.drawMesh();
   drawDiagram(d, table);

@@ -18,6 +18,26 @@ using EC = ElementClass;
 struct DiagramTest: public Test {
   stringstream ss;
 
+  const Pattern HorizontalLine{{
+    {{'-', {EC::SolidLineW, EC::SolidLineE}}, {'-', {EC::SolidLineW, EC::SolidLineE}}}
+  }};
+
+  const Pattern VerticalLine{{
+    {{'|', {EC::SolidLineS, EC::SolidLineN}}},
+    {{'|', {EC::SolidLineS, EC::SolidLineN}}}
+  }};
+
+  const Pattern CornerNW{{
+    {{ 0 , {}},                               {'|', {EC::SolidLineS, EC::SolidLineN}}},
+    {{'-', {EC::SolidLineW, EC::SolidLineE}}, {'+', {EC::SolidLineN, EC::SolidLineW}}}
+  }};
+
+  const Pattern CornerNE{{
+    {{'|', {EC::SolidLineS, EC::SolidLineN}}, { 0 , {}}},
+    {{'+', {EC::SolidLineN, EC::SolidLineE}}, {'-', {EC::SolidLineW, EC::SolidLineE}}}
+  }};
+
+
   DiagramTest():
     ss{"ab\ncd\nef\n"}
   { }
@@ -51,8 +71,8 @@ TEST_F(DiagramTest, shouldCheckPattern) {
          "--+ \n");
   Diagram d{ss};
 
-  EXPECT_THAT(d.checkPattern(0, 1, Patterns::Lines::Solid::Horizontal), true);
-  EXPECT_THAT(d.checkPattern(1, 0, Patterns::Corners::Solid::NW), true);
+  EXPECT_THAT(d.checkPattern(0, 1, HorizontalLine), true);
+  EXPECT_THAT(d.checkPattern(1, 0, CornerNW), true);
 }
 
 
@@ -61,8 +81,8 @@ TEST_F(DiagramTest, shouldNotCheckPattern) {
          "--+ \n");
   Diagram d{ss};
 
-  EXPECT_THAT(d.checkPattern(0, 0, Patterns::Lines::Solid::Horizontal), false);
-  EXPECT_THAT(d.checkPattern(2, 0, Patterns::Corners::Solid::NW), false);
+  EXPECT_THAT(d.checkPattern(0, 0, HorizontalLine), false);
+  EXPECT_THAT(d.checkPattern(2, 0, CornerNW), false);
 }
 
 
@@ -72,11 +92,11 @@ TEST_F(DiagramTest, shouldApplyPatternAtPos) {
          "+--\n");
   Diagram d{ss};
 
-  d.applyPatternAtPos(0, 0, Patterns::Lines::Solid::Vertical);
+  d.applyPatternAtPos(0, 0, VerticalLine);
   EXPECT_THAT(d[0][0].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
   EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
 
-  d.applyPatternAtPos(0, 1, Patterns::Corners::Solid::NE);
+  d.applyPatternAtPos(0, 1, CornerNE);
   EXPECT_THAT(d[0][1].classes, UnorderedElementsAre(EC::SolidLineS, EC::SolidLineN));
   EXPECT_THAT(d[1][1].classes, ElementsAre());
   EXPECT_THAT(d[0][2].classes, UnorderedElementsAre(EC::SolidLineN, EC::SolidLineE));
@@ -94,7 +114,7 @@ TEST_F(DiagramTest, shouldApplyPattern) {
          "--  \n");
   Diagram d{ss};
 
-  d.applyPattern(Patterns::Lines::Solid::Horizontal);
+  d.applyPattern(HorizontalLine);
   EXPECT_THAT(d[0][0].classes, UnorderedElementsAre());
   EXPECT_THAT(d[1][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
   EXPECT_THAT(d[2][0].classes, UnorderedElementsAre(EC::SolidLineE, EC::SolidLineW));
@@ -112,7 +132,7 @@ TEST_F(DiagramTest, shouldNotApplyPattern) {
          "+- \n");
   Diagram d{ss};
 
-  d.applyPattern(Patterns::Corners::Solid::NW);
+  d.applyPattern(CornerNW);
   for (size_t x = 0; x < d.width(); ++x) {
     for (size_t y = 0; y < d.height(); ++y) {
       EXPECT_THAT(d[x][y].classes, UnorderedElementsAre());
