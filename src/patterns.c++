@@ -85,13 +85,43 @@ const Pattern Solid_Arrow_S{{
 
 /// ->
 const Pattern Solid_Arrow_E{{
-  {{'-', {C::SolidLineW, C::SolidLineE}}, {'>', {C::SolidLineW, C::SolidLineE}},  { 0 , {C::ArrowE}}}
+  {{'-', {C::SolidLineW, C::SolidLineE}}, {'>', {C::SolidLineW, C::SolidLineE}}, { 0 , {C::ArrowE}}}
 }};
 
 
 /// <-
 const Pattern Solid_Arrow_W{{
   {{ 0 , {C::ArrowW}}, {'<', {C::SolidLineE, C::SolidLineW}}, {'-', {C::SolidLineE, C::SolidLineW}}}
+}};
+
+
+/// ^
+/// .
+const Pattern Dashed_Arrow_N{{
+  {{ 0 , {C::ArrowN}}},
+  {{'^', {C::DashedLineS, C::DashedLineN}}},
+  {{'.', {C::DashedLineN}}}
+}};
+
+
+/// .
+/// v
+const Pattern Dashed_Arrow_S{{
+  {{'.', {C::DashedLineS}}},
+  {{'v', {C::DashedLineN, C::DashedLineS}}},
+  {{ 0 , {C::ArrowS}}}
+}};
+
+
+/// . . >
+const Pattern Dashed_Arrow_E{{
+  {{'.', {}}, {' ', {}}, {'.', {C::DashedLineE}}, {' ', {C::DashedLineW, C::DashedLineE}}, {'>', {C::DashedLineW, C::DashedLineE}}, {0, {C::ArrowE}}}
+}};
+
+
+/// < . .
+const Pattern Dashed_Arrow_W{{
+  {{ 0 , {C::ArrowW}}, {'<', {C::DashedLineW, C::DashedLineE}}, {' ', {C::DashedLineW, C::DashedLineE}}, {'.', {C::DashedLineW}}, {' ', {}}, {'.', {}}}
 }};
 
 
@@ -251,6 +281,11 @@ void applyAllPatterns(Diagram &diagram) {
   diagram.applyPattern(Solid_Arrow_S);
   diagram.applyPattern(Solid_Arrow_E);
   diagram.applyPattern(Solid_Arrow_W);
+
+  diagram.applyPattern(Dashed_Arrow_N);
+  diagram.applyPattern(Dashed_Arrow_S);
+  diagram.applyPattern(Dashed_Arrow_E);
+  diagram.applyPattern(Dashed_Arrow_W);
 
   diagram.applyPattern(Horizontal_Dashed_Line_From_W_To_Vertical_Solid_Line);
   diagram.applyPattern(Horizontal_Dashed_Line_From_W_To_Vertical_Solid_Line_Without_Space);

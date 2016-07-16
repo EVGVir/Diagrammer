@@ -29,6 +29,9 @@ using namespace std;
 /// .     . .   . .     .
 /// . .   .       .   . .
 ///
+/// ^   .   . . >   < . .
+/// .   v
+///
 ///
 /// Two elements
 /// ------------
@@ -62,6 +65,10 @@ using namespace std;
 /// . . .   . .     |      |      .   .
 ///   |      |      |      |    --.   .--
 ///   |      |    . . .   . .     .   .
+///
+/// ---   .         |   |        ^   < . . >
+///  ^    v    . . >|   |< . .   .
+///  .   ---        |   |        v
 ///
 ///
 /// Other
@@ -161,7 +168,7 @@ TEST_F(DrawDiagramTest, shouldDrawSolidCornerNW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowN) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowN) {
   ss.str(" \n"
          "^\n"
          "|");
@@ -175,7 +182,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowN) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowS) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowS) {
   ss.str("|\n"
          "v\n"
          " ");
@@ -189,7 +196,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowS) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowE) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowE) {
   ss.str("-> ");
   Diagram d{ss};
   applyAllPatterns(d);
@@ -201,7 +208,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowE) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowW) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowW) {
   ss.str(" <-");
   Diagram d{ss};
   applyAllPatterns(d);
@@ -358,7 +365,7 @@ TEST_F(DrawDiagramTest, shouldDrawSolidCornersSEandSW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowNtoHorizontalSolidLine) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowNtoHorizontalSolidLine) {
   ss.str("--\n"
          "^ \n"
          "| ");
@@ -375,7 +382,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoHorizontalSolidLine) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowStoHorizontalSolidLine) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowStoHorizontalSolidLine) {
   ss.str("| \n"
          "v \n"
          "--");
@@ -392,7 +399,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoHorizontalSolidLine) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowEtoVerticalSolidLine) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowEtoVerticalSolidLine) {
   ss.str("->|\n"
          "  |");
   Diagram d{ss};
@@ -408,7 +415,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoVerticalSolidLine) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowWtoVerticalSolidLine) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowWtoVerticalSolidLine) {
   ss.str("|<-\n"
          "|  ");
   Diagram d{ss};
@@ -424,7 +431,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoVerticalSolidLine) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawDoubleSidedVerticalArrow) {
+TEST_F(DrawDiagramTest, shouldDrawDoubleSidedVerticalSolidArrow) {
   ss.str(" \n"
          "^\n"
          "|\n"
@@ -441,7 +448,7 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedVerticalArrow) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalArrow) {
+TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalSolidArrow) {
   ss.str(" <-> ");
   Diagram d{ss};
   applyAllPatterns(d);
@@ -454,7 +461,7 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalArrow) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowNtoSolidCornerNE) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowNtoSolidCornerNE) {
   ss.str("| \n"
          "+-\n"
          "^ \n"
@@ -472,7 +479,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoSolidCornerNE) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowNtoSolidCornerNW) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowNtoSolidCornerNW) {
   ss.str(" |\n"
          "-+\n"
          " ^\n"
@@ -490,7 +497,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoSolidCornerNW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowStoSolidCornerSE) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowStoSolidCornerSE) {
   ss.str("| \n"
          "v \n"
          "+-\n"
@@ -508,7 +515,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoSolidCornerSE) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowStoSolidCornerSW) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowStoSolidCornerSW) {
   ss.str(" |\n"
          " v\n"
          "-+\n"
@@ -526,7 +533,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoSolidCornerSW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowEtoSolidCornerSE) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowEtoSolidCornerSE) {
   ss.str("->+-\n"
          "  | ");
   Diagram d{ss};
@@ -542,7 +549,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoSolidCornerSE) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowEtoSolidCornerNE) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowEtoSolidCornerNE) {
   ss.str("  | \n"
          "->+-");
   Diagram d{ss};
@@ -558,7 +565,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoSolidCornerNE) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowWtoSolidCornerSW) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowWtoSolidCornerSW) {
   ss.str("-+<-\n"
          " |  ");
   Diagram d{ss};
@@ -574,7 +581,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoSolidCornerSW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowWtoSolidCornerNW) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowWtoSolidCornerNW) {
   ss.str(" |  \n"
          "-+<-");
   Diagram d{ss};
@@ -590,7 +597,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowWtoSolidCornerNW) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowNtoCharacter) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowNtoCharacter) {
   ss.str("a\n"
          "^\n"
          "|");
@@ -605,7 +612,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowNtoCharacter) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowStoCharacter) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowStoCharacter) {
   ss.str("|\n"
          "v\n"
          "a");
@@ -620,7 +627,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowStoCharacter) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowEtoCharacter) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowEtoCharacter) {
   ss.str("->a");
   Diagram d{ss};
   applyAllPatterns(d);
@@ -633,7 +640,7 @@ TEST_F(DrawDiagramTest, shouldDrawArrowEtoCharacter) {
 }
 
 
-TEST_F(DrawDiagramTest, shouldDrawArrowWtoCharacter) {
+TEST_F(DrawDiagramTest, shouldDrawSolidArrowWtoCharacter) {
   ss.str("a<-");
   Diagram d{ss};
   applyAllPatterns(d);
@@ -1062,5 +1069,155 @@ TEST_F(DrawDiagramTest, shouldDrawHorizontalSolidLineFromEToVerticalDashedLine) 
   EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowN) {
+  ss.str(" \n"
+         "^\n"
+         ".");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(1);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowS) {
+  ss.str(".\n"
+         "v\n"
+         " ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(1);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowE) {
+  ss.str(". . > ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(5);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowW) {
+  ss.str(" < . .");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(5);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowNtoHorizontalSolidLine) {
+  ss.str("---\n"
+         " ^ \n"
+         " . ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawSolidLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(1);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowStoHorizontalSolidLine) {
+  ss.str(" . \n"
+         " v \n"
+         "---");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawSolidLineE(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineW(_, _)).Times(3);
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(1);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowEtoVerticalSolidLine) {
+  ss.str("     |\n"
+         ". . >|\n"
+         "     |");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(5);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(10);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowWtoVerticalSolidLine) {
+  ss.str("|     \n"
+         "|< . .\n"
+         "|     ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(5);
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
+  EXPECT_CALL(table, drawSolidLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawSolidLineS(_, _)).Times(3);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(10);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDoubleSidedVerticalDashedArrow) {
+  ss.str(" \n"
+         "^\n"
+         ".\n"
+         "v\n"
+         " ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(3);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(3);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalDashedArrow) {
+  ss.str(" < . . > ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(7);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(7);
   drawDiagram(d, table);
 }
