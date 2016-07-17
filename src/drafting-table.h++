@@ -108,6 +108,12 @@ public:
   virtual void drawMesh();
 
 private:
+  /// Styles for drawing lines.
+  enum class LineStyle {
+    Solid,                      ///< Solid line.
+    Dashed                      ///< Dashed line.
+  };
+
   size_t           mElementWidth;  ///< Width of an element in Cairo units.
   size_t           mElementHeight; ///< Height of an element in Cairo units.
   double           mArrowLength;   ///< Length of an arrow in Cairo units.
@@ -121,7 +127,8 @@ private:
   /// @param from_y Vertical coordinate, the line must be drawn from.
   /// @param to_x Horizontal coordinate, the line must be drawn to.
   /// @param to_y Vertical coordinate, the line must be drawn to.
-  void drawLine(double from_x, double from_y, double to_x, double to_y);
+  /// @param style Style, the line must be drawn of.
+  void drawLine(double from_x, double from_y, double to_x, double to_y, LineStyle style);
 
   /// Draws an arrow that points to the [x; y].
   ///
