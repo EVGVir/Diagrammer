@@ -3,8 +3,30 @@
 #include "draw.h++"
 #include "patterns.h++"
 
+#include <docopt.h>
+
 #include <iostream>
+#include <fstream>
 #include <string>
+
+
+/// This program 'usage' text.
+static const char usage[] =
+R"(Diagrammer - ASCII diagrams to pictures converter.
+
+Usage:
+  diagrammer <input-file>
+  diagrammer --help
+
+Options:
+  --help         Show this message and exit.
+
+Copyright Evgeny Gagauz, 2016.
+)";
+
+
+/// Command line arguments (parsed by Docopt).
+std::map<std::string, docopt::value> args;
 
 
 /// Saves a diagram into a PNG file.
@@ -25,7 +47,10 @@ void diagram2png(Diagram &d, const std::string &filename, double fontsize) {
 
 
 int main(int argc, char *argv[]) {
-  auto d = Diagram{std::cin};
+  args = docopt::docopt(usage, {argv + 1, argv + argc});
+
+  auto stream = std::ifstream{args["<input-file>"].asString()};
+  auto d = Diagram{stream};
   diagram2png(d, "output.png", 24.0);
   return 0;
 }

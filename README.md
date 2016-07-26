@@ -26,6 +26,18 @@ will be converted into:
 ![](doc/workflow.png)
 
 
+Usage
+-----
+The only command line argument passed to the program is a file to be
+converted:
+```
+diagrammer <input-file>
+```
+
+The output is saved in a file `output.png`. If this file exists, it
+will be rewritten without a notice.
+
+
 Philosophy
 ----------
 Often diagrams are parts of a source code or some documentation that
