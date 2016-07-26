@@ -11,7 +11,7 @@ $(DOCOPT_BASE_DIR):
 	git clone https://github.com/docopt/docopt.cpp.git --branch master $(DOCOPT_BASE_DIR)
 
 
-$(DOCOPT_BASE_DIR)/Makefile: $(DOCOPT_BASE_DIR)
+$(DOCOPT_BASE_DIR)/Makefile: | $(DOCOPT_BASE_DIR)
 	cd $(DOCOPT_BASE_DIR); cmake .
 
 

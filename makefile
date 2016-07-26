@@ -2,12 +2,12 @@
 
 
 # Diagrammer
-diagrammer: build
+diagrammer: | build
 	make -f diagrammer.make
 
 
 # Test
-test: build
+test: | build
 	make -f test.make test
 
 
