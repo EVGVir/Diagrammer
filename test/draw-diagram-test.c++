@@ -70,6 +70,10 @@ using namespace std;
 ///  ^    v    . . >|   |< . .   .
 ///  .   ---        |   |        v
 ///
+/// . . .   . .     .      .         .   .
+///   ^      ^      v      v    . . >.   .< . .
+///   .      .    . . .   . .        .   .
+///
 ///
 /// Other
 /// -----
@@ -1219,5 +1223,107 @@ TEST_F(DrawDiagramTest, shouldDrawDoubleSidedHorizontalDashedArrow) {
   EXPECT_CALL(table, drawArrowWtoCenter(_, _));
   EXPECT_CALL(table, drawDashedLineE(_, _)).Times(7);
   EXPECT_CALL(table, drawDashedLineW(_, _)).Times(7);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowNtoHorizontalDashedLine) {
+  ss.str(". . .\n"
+         "  ^  \n"
+         "  .  ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(1);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(8);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowNtoHorizontalDashedLineToSpace) {
+  ss.str(". .\n"
+         " ^ \n"
+         " . ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowNtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(1);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowStoHorizontalDashedLine) {
+  ss.str("  .  \n"
+         "  v  \n"
+         ". . .");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(1);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(8);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowStoHorizontalDashedLineToSpace) {
+  ss.str(" . \n"
+         " v \n"
+         ". .");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(2);
+  EXPECT_CALL(table, drawArrowStoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(1);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowEtoVerticalDashedLine) {
+  ss.str("     .\n"
+         ". . >.\n"
+         "     .");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(5);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  EXPECT_CALL(table, drawArrowEtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(10);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowWtoVerticalDashedLine) {
+  ss.str(".     \n"
+         ".< . .\n"
+         ".     ");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(5);
+  EXPECT_CALL(table, drawArrowWtoCenter(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(10);
   drawDiagram(d, table);
 }
