@@ -34,9 +34,20 @@ file to be converted:
 diagrammer <input-file>
 ```
 
-The output is saved in a file `output.png`. If this file exists, it
-will be rewritten without a notice.
 
+### Output
+By default the output is saved in a file `output.png` under the
+current working directory. The name of the output file can be changed
+by passing a desired one after the `--output` option:
+```
+diagrammer --output diagram.png diagram.txt
+```
+
+**Warning.** If the output file exists, it will be rewritten without a
+notice.
+
+
+### Debug Mode
 There is a 'debug' mode. In this mode the diagram is drawn on top of a
 grid. The grid's cells represent characters, therefore cells
 dimensions equal to maximum possible characters width and height. The

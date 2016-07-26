@@ -15,12 +15,13 @@ static const char usage[] =
 R"(Diagrammer - ASCII diagrams to pictures converter.
 
 Usage:
-  diagrammer [--debug] <input-file>
+  diagrammer [--debug] [--output=<file>] <input-file>
   diagrammer --help
 
 Options:
-  --debug, -d    Draw the diagram upon a grid.
-  --help         Show this message and exit.
+  --debug, -d                   Draw the diagram upon a grid.
+  --help                        Show this message and exit.
+  --output=<file>, -o <file>    Place the output in the specified file. [default: output.png]
 
 Copyright Evgeny Gagauz, 2016.
 )";
@@ -54,6 +55,6 @@ int main(int argc, char *argv[]) {
 
   auto stream = std::ifstream{args["<input-file>"].asString()};
   auto d = Diagram{stream};
-  diagram2png(d, "output.png", 24.0);
+  diagram2png(d, args["--output"].asString(), 24.0);
   return 0;
 }
