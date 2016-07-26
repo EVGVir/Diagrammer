@@ -28,14 +28,19 @@ will be converted into:
 
 Usage
 -----
-The only command line argument passed to the program is a file to be
-converted:
+The only mandatory command line argument passed to the program is a
+file to be converted:
 ```
 diagrammer <input-file>
 ```
 
 The output is saved in a file `output.png`. If this file exists, it
 will be rewritten without a notice.
+
+There is a 'debug' mode. In this mode the diagram is drawn on top of a
+grid. The grid's cells represent characters, therefore cells
+dimensions equal to maximum possible characters width and height. The
+mode is enabled by `--debug` command line option.
 
 
 Philosophy

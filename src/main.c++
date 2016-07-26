@@ -15,10 +15,11 @@ static const char usage[] =
 R"(Diagrammer - ASCII diagrams to pictures converter.
 
 Usage:
-  diagrammer <input-file>
+  diagrammer [--debug] <input-file>
   diagrammer --help
 
 Options:
+  --debug, -d    Draw the diagram upon a grid.
   --help         Show this message and exit.
 
 Copyright Evgeny Gagauz, 2016.
@@ -40,7 +41,9 @@ std::map<std::string, docopt::value> args;
 void diagram2png(Diagram &d, const std::string &filename, double fontsize) {
   applyAllPatterns(d);
   auto table = DraftingTable{d.width(), d.height(), fontsize};
-  table.drawMesh();
+  if (args["--debug"].asBool()) {
+    table.drawMesh();
+  }
   drawDiagram(d, table);
   table.saveToPNG(filename);
 }
