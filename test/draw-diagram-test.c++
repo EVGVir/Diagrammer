@@ -83,6 +83,11 @@ using namespace std;
 /// ^     ^   +-   -+
 /// .     .   |     |
 ///
+/// a   .   . . >a   a< . .
+/// ^   v
+/// .   a
+
+///
 ///
 /// Other
 /// -----
@@ -1554,5 +1559,61 @@ TEST_F(DrawDiagramTest, shouldDrawDashedArrowWtoSolidCornerNW) {
   EXPECT_CALL(table, drawSolidLineN(_, _)).Times(2);
   EXPECT_CALL(table, drawSolidLineS(_, _));
   EXPECT_CALL(table, drawCharacter(_, _, ' ')).Times(6);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowNtoCharacter) {
+  ss.str("a\n"
+         "^\n"
+         ".");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowNtoEdge(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _)).Times(2);
+  EXPECT_CALL(table, drawDashedLineS(_, _));
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowStoCharacter) {
+  ss.str(".\n"
+         "v\n"
+         "a");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowStoEdge(_, _));
+  EXPECT_CALL(table, drawDashedLineN(_, _));
+  EXPECT_CALL(table, drawDashedLineS(_, _)).Times(2);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowEtoCharacter) {
+  ss.str(". . >a");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowEtoEdge(_, _));
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(5);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(4);
+  drawDiagram(d, table);
+}
+
+
+TEST_F(DrawDiagramTest, shouldDrawDashedArrowWtoCharacter) {
+  ss.str("a< . .");
+  Diagram d{ss};
+  applyAllPatterns(d);
+
+  EXPECT_CALL(table, drawCharacter(_, _, 'a'));
+  EXPECT_CALL(table, drawArrowWtoEdge(_, _));
+  EXPECT_CALL(table, drawDashedLineE(_, _)).Times(4);
+  EXPECT_CALL(table, drawDashedLineW(_, _)).Times(5);
   drawDiagram(d, table);
 }
