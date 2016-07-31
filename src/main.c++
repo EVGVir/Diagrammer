@@ -1,34 +1,12 @@
+#include "command-line-options.h++"
 #include "diagram.h++"
 #include "drafting-table.h++"
 #include "draw.h++"
 #include "patterns.h++"
 
-#include <docopt.h>
-
 #include <iostream>
 #include <fstream>
 #include <string>
-
-
-/// This program 'usage' text.
-static const char usage[] =
-R"(Diagrammer - ASCII diagrams to pictures converter.
-
-Usage:
-  diagrammer [--debug] [--output=<file>] <input-file>
-  diagrammer --help
-
-Options:
-  --debug, -d                   Draw the diagram upon a grid.
-  --help                        Show this message and exit.
-  --output=<file>, -o <file>    Place the output in the specified file. [default: output.png]
-
-Copyright Evgeny Gagauz, 2016.
-)";
-
-
-/// Command line arguments (parsed by Docopt).
-std::map<std::string, docopt::value> args;
 
 
 /// Saves a diagram into a PNG file.
@@ -39,10 +17,13 @@ std::map<std::string, docopt::value> args;
 /// @param d Diagram to be saved.
 /// @param filename File, the diagram to be saved to.
 /// @param fontsize Font size that is used for rasterization.
-void diagram2png(Diagram &d, const std::string &filename, double fontsize) {
+/// @param isDebugMode Shows if debug information must be drawn:
+///   - true  - the debug information must be drawn.
+///   - false - the debug information must not be drawn;
+void diagram2png(Diagram &d, const std::string &filename, double fontsize, bool isDebugMode) {
   applyAllPatterns(d);
   auto table = DraftingTable{d.width(), d.height(), fontsize};
-  if (args["--debug"].asBool()) {
+  if (isDebugMode) {
     table.drawMesh();
   }
   drawDiagram(d, table);
@@ -51,10 +32,10 @@ void diagram2png(Diagram &d, const std::string &filename, double fontsize) {
 
 
 int main(int argc, char *argv[]) {
-  args = docopt::docopt(usage, {argv + 1, argv + argc});
+  CommandLineOptions options{argc, argv};
 
-  auto stream = std::ifstream{args["<input-file>"].asString()};
+  auto stream = std::ifstream{options.inputFileName()};
   auto d = Diagram{stream};
-  diagram2png(d, args["--output"].asString(), 24.0);
+  diagram2png(d, options.outputFileName(), 24.0, options.isDebugMode());
   return 0;
 }
