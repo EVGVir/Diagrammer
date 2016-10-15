@@ -3,6 +3,7 @@
 #include "drafting-table.h++"
 #include "draw.h++"
 #include "patterns.h++"
+#include "utils.h++"
 
 #include <iostream>
 #include <fstream>
@@ -34,8 +35,15 @@ void diagram2png(Diagram &d, const std::string &filename, double fontsize, bool 
 int main(int argc, char *argv[]) {
   CommandLineOptions options{argc, argv};
 
+  if (!isFileExist(options.inputFileName())) {
+    std::cerr << "File '" << options.inputFileName()
+              << "' does not exist or it is not a regular file." << std::endl;
+    return 1;
+  }
+
   auto stream = std::ifstream{options.inputFileName()};
   auto d = Diagram{stream};
   diagram2png(d, options.outputFileName(), 24.0, options.isDebugMode());
+
   return 0;
 }

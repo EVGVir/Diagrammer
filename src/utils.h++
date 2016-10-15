@@ -18,3 +18,13 @@
       std::abort();                                                     \
     }                                                                   \
   } while (false)
+
+
+/// Checks if a file exists and it is a regular file.
+///
+/// @param filename Name of the file to be checked.
+///
+/// @return Result of the check.
+/// @retval true  File exists and it is a regular file.
+/// @retval false File does not exists or it is not a regular file.
+bool isFileExist(const std::string filename);
