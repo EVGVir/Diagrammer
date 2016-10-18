@@ -47,3 +47,10 @@ inline std::string toString(T value) {
   ss << value;
   return ss.str();
 }
+
+
+/// @return Concatenated literal representation of its parameters.
+template<typename T, typename... Args>
+inline std::string toString(T value, Args... values) {
+  return toString(value) + toString(values...);
+}

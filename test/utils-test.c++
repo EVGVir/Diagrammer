@@ -39,3 +39,9 @@ TEST(UtilsTest, shouldConvertCStringToString) {
 TEST(UtilsTest, shouldConvertPointerToString) {
   EXPECT_THAT(toString((void *)0xbeaf), std::string("0xbeaf"));
 }
+
+
+TEST(UtilsTest, shouldConvertSeveralValuesToString) {
+  EXPECT_THAT(toString((void *)0xbeaf, " = ", 0xbeaf),
+              std::string("0xbeaf = 48815"));
+}
