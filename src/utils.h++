@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <iostream>
-
+#include <sstream>
 
 /// Checks if condition is true. If it does not, assert outputs
 /// diagnostic information on the standard error output and calls
@@ -28,3 +28,22 @@
 /// @retval true  File exists and it is a regular file.
 /// @retval false File does not exists or it is not a regular file.
 bool isFileExist(const std::string filename);
+
+
+/// @return Literal representation of a value.
+/// @param value A value to be represented in form of a string.
+///        Different types are converted in a different way:
+///            Type |  Value |   Result
+///        ---------+--------+---------
+///         Integer |      5 |      "5"
+///         Integer |   0123 |     "83"
+///         Integer | 0xbeaf |  "48815"
+///           Float |   3.14 |   "3.14"
+///        C-string |  "abc" |    "abc"
+///         Pointer | 0xbeaf | "0xbeaf"
+template<typename T>
+inline std::string toString(T value) {
+  std::stringstream ss{std::ios_base::out};
+  ss << value;
+  return ss.str();
+}
