@@ -19,6 +19,9 @@ public:
   /// @return Name of a file to write the diagram into.
   std::string outputFileName() const;
 
+  /// @return Font size to be used to generate the diagram.
+  long fontSize() const;
+
   /// @return If the debug is enabled.
   /// @retval true  The debug mode is enabled.
   /// @retval false The debug mode is disabled.

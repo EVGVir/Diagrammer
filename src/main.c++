@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
   auto stream = std::ifstream{options.inputFileName()};
   auto d = Diagram{stream};
-  diagram2png(d, options.outputFileName(), 24.0, options.isDebugMode());
+  diagram2png(d, options.outputFileName(), options.fontSize(), options.isDebugMode());
 
   return 0;
 }

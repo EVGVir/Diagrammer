@@ -8,18 +8,19 @@ drawn in ASCII art technick into bitmaps.
 
 For example, a diagram:
 ```
-   Source code/Text
+ Source code/Text
 
-          |
-          v
-+--------------------+        +------------+
-| Documentation/Site | . . . >| Diagrammer |
-|     Generator      |< . . . |            |
-+---------+----------+        +------------+
-          |
-          v
+        |
+        v
++---------------+        +------------+
+| Documentation | . . . >|            |
+|               |        | Diagrammer |
+|   Generator   |< . . . |            |
++-------+-------+        +------------+
+        |
+        v
 
-  Documentation/Site
+  Documentation
 ```
 will be converted into:
 
